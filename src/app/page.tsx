@@ -4,12 +4,14 @@ import React, { useEffect, useRef, useState, useMemo } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import CTAButton from "./components/CTAButton";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
 const HomePage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const buttonGroupRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const [scrollY, setScrollY] = useState(0);
@@ -34,8 +36,7 @@ const HomePage = () => {
     // Logo move up and shrink
     gsap.to(logoRef.current, {
       scale: 0.5,
-      // yPercent: -60,
-      y: -300,
+      y: -140,
       scrollTrigger: {
         trigger: sectionsRef.current[1],
         start: "top bottom",
@@ -75,7 +76,14 @@ const HomePage = () => {
   };
 
   const sections = [
-    { id: "section1", content: <></> },
+    {
+      id: "section1", content:
+        <div className="fixed bottom-40 left-1/2 transform -translate-x-1/2 z-40 flex space-x-4">
+          <CTAButton title="Donate" onClickCallback={() => scrollToSection("section4")} />
+          <CTAButton title="Volunteer" onClickCallback={() => scrollToSection("section4")} />
+          <CTAButton title="CSR (company)" onClickCallback={() => scrollToSection("section4")} />
+        </div>
+    },
     {
       id: "section2",
       content: (
@@ -142,7 +150,7 @@ const HomePage = () => {
       {/* Fixed logo — always visible for section 1 & 2 */}
       <div
         ref={logoRef}
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex justify-center items-center pointer-events-none"
+        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex justify-center items-center pointer-events-none"
       >
         <Image
           src="/sat-school-logo-no-bg.png"
@@ -152,6 +160,7 @@ const HomePage = () => {
           className="drop-shadow-lg"
         />
       </div>
+
 
       {/* Scrollable content sections */}
       {sections.map((s, i) => (

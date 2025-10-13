@@ -55,23 +55,29 @@ const CTAButton = ({
             ref={buttonRef}
             onClick={onClickCallback}
             className="
-                relative
-                bg-[#e0e0e0]
-                text-black
-                font-bold
-                text-lg
-                px-8
-                py-4
-                rounded-[18px]
-                shadow-lg
-                border-3
-                white
-                transition-colors
-                hover:bg-[#fbde4f]
-                active:transform
-                active:scale-95
-                overflow-hidden
-            "
+            relative
+            w-full
+            md:w-auto
+            bg-[#e0e0e0]
+            text-black
+            font-bold
+            text-base
+            md:text-lg
+            px-4
+            md:px-8
+            py-3
+            md:py-4
+            rounded-[18px]
+            shadow-lg
+            border-3
+            white
+            transition-colors
+            hover:bg-[#fbde4f]
+            active:transform
+            active:scale-95
+            overflow-hidden
+            whitespace-nowrap
+        "
             style={{
                 textShadow: '1px 1px 0 rgba(0,0,0,0.1)',
                 boxShadow: '3px 3px 0 rgba(0,0,0,0.2), 0 0 10px rgba(0,0,0,0.1)',

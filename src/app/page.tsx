@@ -78,7 +78,7 @@ const HomePage = () => {
   const sections = [
     {
       id: "section1", content:
-        <div className="fixed bottom-40 left-1/2 transform -translate-x-1/2 z-40 flex space-x-4">
+        <div className="fixed bottom-20 md:bottom-40 left-1/2 transform -translate-x-1/2 z-40 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-[90%] md:w-auto">
           <CTAButton title="Donate" onClickCallback={() => scrollToSection("section4")} />
           <CTAButton title="Volunteer" onClickCallback={() => scrollToSection("section4")} />
           <CTAButton title="CSR (company)" onClickCallback={() => scrollToSection("section4")} />
@@ -150,14 +150,15 @@ const HomePage = () => {
       {/* Fixed logo — always visible for section 1 & 2 */}
       <div
         ref={logoRef}
-        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex justify-center items-center pointer-events-none"
+        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
       >
         <Image
           src="/sat-school-logo-no-bg.png"
           alt="Saturday School Logo"
           width={1000}
           height={1000}
-          className="drop-shadow-lg"
+          className="drop-shadow-lg w-full h-auto"
+          priority
         />
       </div>
 

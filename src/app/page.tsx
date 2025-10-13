@@ -34,7 +34,7 @@ const HomePage = () => {
     // Logo move up and shrink
     gsap.to(logoRef.current, {
       scale: 0.5,
-      y: -250,
+      yPercent: -60,
       scrollTrigger: {
         trigger: sectionsRef.current[1],
         start: "top bottom",
@@ -157,7 +157,7 @@ const HomePage = () => {
         <section
           id={s.id}
           key={s.id}
-          ref={(el) => (sectionsRef.current[i] = el!)}
+          ref={(el) => { if (el) sectionsRef.current[i] = el; }}
           className={`relative flex items-center justify-center h-screen px-8 ${i <= 1 ? "bg-transparent" : "bg-[#002060]"
             }`}
         >

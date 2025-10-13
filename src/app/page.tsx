@@ -34,7 +34,8 @@ const HomePage = () => {
     // Logo move up and shrink
     gsap.to(logoRef.current, {
       scale: 0.5,
-      yPercent: -60,
+      // yPercent: -60,
+      y: -300,
       scrollTrigger: {
         trigger: sectionsRef.current[1],
         start: "top bottom",
@@ -133,7 +134,7 @@ const HomePage = () => {
         <div
           className="absolute top-0 left-0 w-full h-full transition-colors"
           style={{
-            backgroundColor: `rgba(0, 32, 96, ${1 - opacity})`,
+            backgroundColor: `rgba(30, 85, 165, ${1 - opacity})`,
           }}
         />
       </div>
@@ -158,7 +159,7 @@ const HomePage = () => {
           id={s.id}
           key={s.id}
           ref={(el) => { if (el) sectionsRef.current[i] = el; }}
-          className={`relative flex items-center justify-center h-screen px-8 ${i <= 1 ? "bg-transparent" : "bg-[#002060]"
+          className={`relative flex items-center justify-center h-screen px-8 ${i <= 1 ? "bg-transparent" : "bg-[#1e55a5]"
             }`}
         >
           {s.content}

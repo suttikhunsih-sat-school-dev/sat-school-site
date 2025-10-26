@@ -1,25 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-
-interface MenuItem {
-    id: string;
-    label: string;
-    children?: MenuItem[];
-}
-
-const menuItems: MenuItem[] = [
-    { id: 'menu1', label: 'Mock Menu 1' },
-    {
-        id: 'menu2',
-        label: 'Mock Menu 2',
-        children: [
-            { id: 'menu2-1', label: 'Mock Menu 2.1' },
-            { id: 'menu2-2', label: 'Mock Menu 2.2' },
-            { id: 'menu2-3', label: 'Mock Menu 2.3' },
-        ],
-    },
-    { id: 'menu3', label: 'Mock Menu 3' },
-];
+import { menuItems } from '@/app/constant/mainPage';
+import Link from 'next/link';
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +60,7 @@ const HamburgerMenu = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
+
     const toggleSubMenu = (itemId: string) => {
         setExpandedItems(prev => {
             const next = new Set(prev);
@@ -118,27 +101,35 @@ const HamburgerMenu = () => {
                 <div className="pt-20 px-4">
                     {menuItems.map((item) => (
                         <div key={item.id} className="mb-4">
-                            <button
-                                onClick={() => toggleSubMenu(item.id)}
-                                className="text-white transition-colors w-full text-left py-2 flex justify-between items-center"
-                            >
-                                {item.label}
-                                {item.children && (
-                                    <span className={`transform transition-transform duration-200 ${expandedItems.has(item.id) ? 'rotate-180' : ''
-                                        }`}>
-                                        ▼
-                                    </span>
-                                )}
-                            </button>
+                            <Link href={item.urlNavigate || '#'} key={item.id}>
+                                <button
+                                    onClick={() => {
+                                        if (!item.urlNavigate) {
+                                            toggleSubMenu(item.id)
+                                        }
+                                    }}
+                                    className="text-white transition-colors w-full text-left py-2 flex justify-between items-center"
+                                >
+                                    {item.label}
+                                    {item.children && (
+                                        <span className={`transform transition-transform duration-200 ${expandedItems.has(item.id) ? 'rotate-180' : ''
+                                            }`}>
+                                            ▼
+                                        </span>
+                                    )}
+                                </button>
+                            </Link>
                             {item.children && expandedItems.has(item.id) && (
                                 <div className="ml-4 mt-2 space-y-2">
                                     {item.children.map((child) => (
-                                        <button
-                                            key={child.id}
-                                            className="text-white/80 transition-colors w-full text-left py-1"
-                                        >
-                                            {child.label}
-                                        </button>
+                                        <Link href={child.urlNavigate || '#'} key={child.id}>
+                                            <button
+                                                key={child.id}
+                                                className="text-white/80 transition-colors w-full text-left py-1"
+                                            >
+                                                {child.label}
+                                            </button>
+                                        </Link>
                                     ))}
                                 </div>
                             )}

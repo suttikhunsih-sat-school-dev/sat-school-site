@@ -12,7 +12,7 @@ const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 const HomePage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const buttonGroupRef = useRef<HTMLDivElement>(null);
+  // const buttonGroupRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const [scrollY, setScrollY] = useState(0);

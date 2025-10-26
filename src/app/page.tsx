@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CTAButton from "./components/CTAButton";
+import HamburgerMenu from './components/HamburgerMenu';
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
@@ -36,12 +37,14 @@ const HomePage = () => {
     // Logo move up and shrink
     gsap.to(logoRef.current, {
       scale: 0.5,
-      y: -140,
+      yPercent: -50,
+      top: "15%",
       scrollTrigger: {
         trigger: sectionsRef.current[1],
         start: "top bottom",
         end: "top 20%",
-        scrub: true,
+        scrub: 1,
+        markers: false, // Set to true for debugging
       },
     });
 
@@ -117,17 +120,8 @@ const HomePage = () => {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Navigation (for demo) */}
-      <div className="fixed top-6 left-6 z-50 flex gap-3 text-white">
-        {sections.map((s, i) => (
-          <button key={s.id} onClick={() => scrollToSection(s.id)} className="underline">
-            {i + 1}
-          </button>
-        ))}
-      </div>
-
       {/* Background video + overlay */}
-      <div className="fixed top-0 left-0 w-full h-screen -z-10">
+      <div className="fixed top-0 left-0 w-full h-screen z-[1]">
         <video
           ref={videoRef}
           autoPlay
@@ -150,7 +144,8 @@ const HomePage = () => {
       {/* Fixed logo — always visible for section 1 & 2 */}
       <div
         ref={logoRef}
-        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
+        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[2] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
+        style={{ willChange: 'transform' }}
       >
         <Image
           src="/sat-school-logo-no-bg.png"
@@ -161,6 +156,9 @@ const HomePage = () => {
           priority
         />
       </div>
+
+      {/* Navigation (for demo) */}
+      <HamburgerMenu />
 
 
       {/* Scrollable content sections */}

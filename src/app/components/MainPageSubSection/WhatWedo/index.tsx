@@ -22,18 +22,13 @@ const WhatWeDo = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top center",
+                start: "top top",
                 end: "bottom center",
                 pin: true, // This pins the section while animating
                 scrub: false,
                 markers: false, // Set to false in production
             },
         });
-
-        // gsap.set(containerRef.current, {
-        //     opacity: 0,
-        //     y: 100 // Start slightly below center
-        // });
 
         // Initial states
         gsap.set([girlRef.current, houseRef.current], {
@@ -85,7 +80,7 @@ const WhatWeDo = () => {
     return (
         <div
             ref={containerRef}
-            className="z-[2] relative flex items-start justify-between w-full h-screen pl-20 pr-0"
+            className="z-[2] relative flex items-center justify-between w-full h-screen pl-20 pr-0"
         >
             {/* Left - Girl */}
             <div ref={girlRef} className="w-1/4">
@@ -112,18 +107,43 @@ const WhatWeDo = () => {
                     {/* Add your slideshow images here */}
                 </div>
             </div>
-
-            {/* Right - House */}
-            <div ref={houseRef} className="w-1/4">
-                <Image
-                    src="/art-fun-house.png"
-                    alt="art fun house cartoon"
-                    width={1000}
-                    height={1000}
-                    className="drop-shadow-lg"
-                    priority
-                />
+            <div className="absolute top-[10px] right-[300px] w-1/4">
+                <div className="relative">
+                    <Image
+                        src="/viking.png"
+                        alt="viking cartoon"
+                        width={400}
+                        height={400}
+                        className="drop-shadow-lg"
+                        priority
+                    />
+                </div>
             </div>
+            <div className="w-1/4">
+                <div className="relative">
+                    <Image
+                        src="/art-fun-house.png"
+                        alt="art fun house cartoon"
+                        width={1000}
+                        height={1000}
+                        className="drop-shadow-lg"
+                        priority
+                    />
+                </div>
+            </div>
+            <div className="absolute bottom-[20px] right-[280px] w-1/5">
+                <div className="relative">
+                    <Image
+                        src="/merry-go-cow.png"
+                        alt="merry-go-cow cartoon"
+                        width={400}
+                        height={400}
+                        className="drop-shadow-lg"
+                        priority
+                    />
+                </div>
+            </div>
+
         </div>
     );
 };

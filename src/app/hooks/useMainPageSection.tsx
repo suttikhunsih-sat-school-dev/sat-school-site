@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import DoodleBallCTAButton from "../components/DoodleBallCTAButton";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Image from "next/image";
+import WhatWeDo from "../components/MainPageSubSection/WhatWedo";
 
 const useMainPageSection = () => {
     const scrollToSection = (id: string) => {
@@ -20,17 +22,13 @@ const useMainPageSection = () => {
         {
             id: "section2",
             content: (
-                <div className="animate-content text-white text-4xl text-center">
-                    <p className="text-lg mt-2">
-                        aaaaaa
-                    </p>
-                </div>
+                <WhatWeDo />
             ),
         },
         {
             id: "section3",
             content: (
-                <div className="animate-content text-white text-4xl text-center">
+                <div className="z-[2] animate-content text-white text-4xl text-center">
                     <p>Our Impact, projects</p>
                     <p className="text-lg mt-2">More than 10,000 kids across Thailand have joined.</p>
                     <p className="text-lg mt-2">All projects</p>
@@ -40,7 +38,7 @@ const useMainPageSection = () => {
         {
             id: "section4",
             content: (
-                <div className="animate-content text-white text-4xl text-center">
+                <div className="z-[2] animate-content text-white text-4xl text-center">
                     <p>Join Us / Donate / Support</p>
                     <p className="text-lg mt-2">Be part of our next chapter!</p>
                 </div>
@@ -67,9 +65,10 @@ const useMainPageSection = () => {
 
         // Logo move up and shrink
         gsap.to(logoRef.current, {
-            scale: 0.5,
+            scale: 0.3,
             yPercent: -50,
-            top: "15%",
+            top: "10%",
+            left: "10%",
             scrollTrigger: {
                 trigger: sectionsRef.current[1],
                 start: "top bottom",

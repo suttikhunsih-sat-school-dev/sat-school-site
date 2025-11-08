@@ -5,7 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import CTAButton from "./components/CTAButton";
-import HamburgerMenu from './components/HamburgerMenu';
+import DoodleBallCTAButton from "./components/DoodleBallCTAButton";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
@@ -81,10 +81,13 @@ const HomePage = () => {
   const sections = [
     {
       id: "section1", content:
-        <div className="fixed bottom-20 md:bottom-40 left-1/2 transform -translate-x-1/2 z-40 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 w-[90%] md:w-auto">
-          <CTAButton title="Donate" onClickCallback={() => scrollToSection("section4")} />
+        <div className="flex flex-col gap-8 fixed top-20 md:bottom-40 right-1/30 transform -translate-x-1/2 z-40 space-y-4 md:space-y-0 md:space-x-4 w-[90%] md:w-auto">
+          {/* <CTAButton title="Donate" onClickCallback={() => scrollToSection("section4")} />
           <CTAButton title="Volunteer" onClickCallback={() => scrollToSection("section4")} />
-          <CTAButton title="CSR (company)" onClickCallback={() => scrollToSection("section4")} />
+          <CTAButton title="CSR (company)" onClickCallback={() => scrollToSection("section4")} /> */}
+          <DoodleBallCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
+          <DoodleBallCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
+          <DoodleBallCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
         </div>
     },
     {
@@ -156,10 +159,6 @@ const HomePage = () => {
           priority
         />
       </div>
-
-      {/* Navigation (for demo) */}
-      <HamburgerMenu />
-
 
       {/* Scrollable content sections */}
       {sections.map((s, i) => (

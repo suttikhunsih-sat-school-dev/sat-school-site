@@ -43,26 +43,34 @@ const DoodleBallCTAButton = ({
     }, []);
 
     return (
-        <div className="relative flex gap-4 justify-center items-center">
+        <button onClick={onClickCallback} className="relative flex gap-1 justify-center items-center">
 
             {/* Actual dribbling button */}
             <div
                 ref={buttonContainerRef}
                 onClick={onClickCallback}
+                // className="
+                //     relative
+                //     z-10
+                //     bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500
+                //     text-white font-bold py-4 px-4 rounded-full shadow-lg
+                //     hover:shadow-xl transition-shadow duration-300 ease-in-out
+                //     border-4 border-white
+                //     "
                 className="
                     relative
                     z-10
-                    bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500
+                    bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
                     text-white font-bold py-4 px-4 rounded-full shadow-lg
                     hover:shadow-xl transition-shadow duration-300 ease-in-out
                     border-4 border-white
                     "
             >
             </div>
-            <div className=" text-white font-bold py-4 px-4 rounded-full">
+            <div onClick={onClickCallback} className=" text-white font-bold py-4 px-4 rounded-full">
                 {title}
             </div>
-        </div>
+        </button>
     );
 };
 

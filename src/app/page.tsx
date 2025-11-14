@@ -67,7 +67,7 @@ const HomePage = () => {
           priority
         />
       </div>
-      <div className="fixed top-1/3 left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
+      <div className="fixed top-2/3 left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
       </div>
 

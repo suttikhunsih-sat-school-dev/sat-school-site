@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import useMainPageSection from "./hooks/useMainPageSection";
 import DoodleBallCTAButton from "./components/DoodleBallCTAButton";
+import SatSchoolMainQuote from "./components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
@@ -65,6 +66,9 @@ const HomePage = () => {
           className="drop-shadow-lg w-full h-auto"
           priority
         />
+      </div>
+      <div className="fixed top-1/3 left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
+        <SatSchoolMainQuote />
       </div>
 
       {/* Scrollable content sections */}

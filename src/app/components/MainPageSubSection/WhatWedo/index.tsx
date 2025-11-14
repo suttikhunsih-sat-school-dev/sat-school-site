@@ -9,6 +9,7 @@ import TextPlugin from "gsap/TextPlugin";
 
 const WhatWeDo = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const bgRef = useRef<HTMLDivElement>(null);
     const girlRef = useRef<HTMLDivElement>(null);
     const houseRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLHeadingElement>(null);
@@ -17,6 +18,19 @@ const WhatWeDo = () => {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // background management
+        // Fade in background image with scroll
+        gsap.to(bgRef.current, {
+            opacity: 1,
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false,
+            },
+        });
 
         // Main timeline
         const tl = gsap.timeline({
@@ -82,6 +96,18 @@ const WhatWeDo = () => {
             ref={containerRef}
             className="z-[2] relative flex items-center justify-between w-full h-screen pl-20 pr-0"
         >
+            {/* Background with space image */}
+            <div
+                ref={bgRef}
+                className="absolute inset-0 -z-20 opacity-0"
+                style={{
+                    backgroundImage: "url('/space-bg.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+            />
+            {/* Gradient overlay for smoother transition */}
+            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#1e55a5]/80 to-transparent" />
             {/* Left - Girl */}
             <div ref={girlRef} className="w-1/4">
                 <Image
@@ -107,7 +133,7 @@ const WhatWeDo = () => {
                     {/* Add your slideshow images here */}
                 </div>
             </div>
-            <div className="absolute top-[10px] right-[300px] w-1/4">
+            {/* <div className="absolute top-[10px] right-[300px] w-1/4">
                 <div className="relative">
                     <Image
                         src="/viking.png"
@@ -142,7 +168,7 @@ const WhatWeDo = () => {
                         priority
                     />
                 </div>
-            </div>
+            </div> */}
 
         </div>
     );

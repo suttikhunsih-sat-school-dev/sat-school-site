@@ -26,7 +26,7 @@ const HomePage = () => {
 
   return (
     <div ref={containerRef} className="relative">
-      <div className="flex flex-col gap-2 fixed top-10 md:bottom-40 right-[0px] transform -translate-x-1/2 z-40 space-y-4 md:space-y-0 md:space-x-4 w-[90%] md:w-auto">
+      <div className="flex flex-col  fixed top-10 right-[0px] transform pr-[40px]  z-30 space-y-4 ">
         <DoodleBallCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
         <DoodleBallCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
         <DoodleBallCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />

@@ -67,7 +67,7 @@ const DoodleBallCTAButton = ({
                     "
             >
             </div>
-            <div onClick={onClickCallback} className=" text-white font-bold py-4 px-4 rounded-full">
+            <div onClick={onClickCallback} className=" text-white text-2xl font-bold py-4 px-4 rounded-full">
                 {title}
             </div>
         </button>

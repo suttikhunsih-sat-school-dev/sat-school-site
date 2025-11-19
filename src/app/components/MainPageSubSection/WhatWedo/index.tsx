@@ -94,12 +94,12 @@ const WhatWeDo = () => {
     return (
         <div
             ref={containerRef}
-            className="z-[2] relative flex items-center justify-between w-full h-screen pl-20 pr-0"
+            className="z-[2] relative flex items-center justify-between w-full h-screen pl-0 pr-0"
         >
             {/* Background with space image */}
             <div
                 ref={bgRef}
-                className="absolute inset-0 -z-20 opacity-0"
+                className="absolute inset-0 -z-20 opacity-0 w-full h-full"
                 style={{
                     backgroundImage: "url('/space-bg.png')",
                     backgroundSize: "cover",
@@ -107,7 +107,7 @@ const WhatWeDo = () => {
                 }}
             />
             {/* Gradient overlay for smoother transition */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#1e55a5]/80 to-transparent" />
+            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#1e55a5]/500 to-transparent" />
             {/* Left - Girl */}
             <div ref={girlRef} className="w-1/4">
                 <Image

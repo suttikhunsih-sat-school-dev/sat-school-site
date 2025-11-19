@@ -55,7 +55,7 @@ const HomePage = () => {
       {/* Fixed logo — always visible for section 1 & 2 */}
       <div
         ref={logoRef}
-        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[2] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
+        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
         style={{ willChange: 'transform' }}
       >
         <Image
@@ -67,9 +67,10 @@ const HomePage = () => {
           priority
         />
       </div>
-      {/* <div className="fixed top-2/3 left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
+      <div className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
-      </div> */}
+      </div>
+
 
       {/* Scrollable content sections */}
       {sections.map((s, i) => (
@@ -77,7 +78,7 @@ const HomePage = () => {
           id={s.id}
           key={s.id}
           ref={(el) => { if (el) sectionsRef.current[i] = el; }}
-          className={`relative flex items-center justify-center h-screen px-8 ${i <= 1 ? "bg-transparent" : "bg-[#1e55a5]"
+          className={`relative flex items-center justify-center h-screen ${i <= 1 ? "bg-transparent" : "bg-[#1e55a5]"
             }`}
         >
           {s.content}

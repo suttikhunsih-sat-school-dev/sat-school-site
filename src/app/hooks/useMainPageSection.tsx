@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import DoodleBallCTAButton from "../components/DoodleBallCTAButton";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Image from "next/image";
 import WhatWeDo from "../components/MainPageSubSection/WhatWedo";
+import ProjectsPillarForVolunteerSection from "../components/MainPageSubSection/ProjectsPillarForVolunteerSection";
 
 const useMainPageSection = () => {
     const scrollToSection = (id: string) => {
@@ -13,6 +12,7 @@ const useMainPageSection = () => {
     const [scrollY, setScrollY] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLDivElement>(null);
+    const quoteRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const sectionsRef = useRef<HTMLElement[]>([]);
     const sections = [
@@ -28,22 +28,17 @@ const useMainPageSection = () => {
         {
             id: "section3",
             content: (
-                <div className="z-[2] animate-content text-white text-4xl text-center">
-                    <p>Our Impact, projects</p>
-                    <p className="text-lg mt-2">More than 10,000 kids across Thailand have joined.</p>
-                    <p className="text-lg mt-2">All projects</p>
-                </div>
+                <ProjectsPillarForVolunteerSection />
             ),
         },
-        {
-            id: "section4",
-            content: (
-                <div className="z-[2] animate-content text-white text-4xl text-center">
-                    <p>Join Us / Donate / Support</p>
-                    <p className="text-lg mt-2">Be part of our next chapter!</p>
-                </div>
-            ),
-        },
+        // {
+        //     id: "section4",
+        //     content: (
+        //         <div className="z-[2] animate-content text-white text-4xl text-center">
+        //             <ProjectsPillarForVolunteerSection />
+        //         </div>
+        //     ),
+        // },
     ];
 
     useEffect(() => {
@@ -78,6 +73,17 @@ const useMainPageSection = () => {
             },
         });
 
+        gsap.to(quoteRef.current, {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+                markers: false, // Set to true for debugging
+            },
+        });
+
         // Animate section content
         sectionsRef.current.forEach((section, i) => {
             if (i === 0) return;
@@ -97,7 +103,7 @@ const useMainPageSection = () => {
 
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
-    return { scrollToSection, sections, sectionsRef, videoRef, containerRef, logoRef, scrollY };
+    return { scrollToSection, sections, sectionsRef, videoRef, containerRef, logoRef, quoteRef, scrollY };
 };
 
 export default useMainPageSection;

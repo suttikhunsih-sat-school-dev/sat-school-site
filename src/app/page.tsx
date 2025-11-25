@@ -16,6 +16,7 @@ const HomePage = () => {
     containerRef,
     logoRef,
     scrollY,
+    quoteRef,
     scrollToSection,
   } = useMainPageSection()
 
@@ -67,7 +68,7 @@ const HomePage = () => {
           priority
         />
       </div>
-      <div className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
+      <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
       </div>
 

@@ -102,7 +102,7 @@ export default function BangkokMap({ schools }: BangkokMapProps) {
 
       {/* School list overlay */}
       {schools.length > 0 && (
-        <div className="mt-3 px-4 text-xs space-y-1 max-h-20 overflow-y-auto">
+        <div className="mt-3 px-4 text-xs space-y-1 max-h-44 overflow-y-auto">
           <p className="text-muted-foreground font-medium">Schools Shown:</p>
           {schools.slice(0, 5).map((school) => (
             <div key={school.id} className="flex items-start gap-2 text-muted-foreground">

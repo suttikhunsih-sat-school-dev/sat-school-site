@@ -60,15 +60,14 @@ export default function Home() {
             </header>
 
             {/* Main Content */}
-            <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+            <main className=" mx-auto px-4 md:px-8 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* add a mascot image */}
-                    <div className="absolute top-[200px] left-8 w-32 md:w-40 lg:w-48">
+                    <div className="absolute top-[2px] right-8 w-32 md:w-40 lg:w-48">
                         <Image
                             src="/Boy_BusyPaperwork.png"
                             alt="BoyBusyPaperwork"
-                            width={242}
-                            height={242}
+                            width={140}
+                            height={140}
                             className="drop-shadow-lg h-auto"
                             priority
                         />
@@ -93,7 +92,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* Map Section */}
+                    {/* Map Section , make it take all space lefted if possible*/}
                     <div className="lg:col-span-1">
                         <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden sticky top-8">
                             <div className="p-4 border-b border-border">

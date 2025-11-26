@@ -6,6 +6,8 @@ import BangkokMap from "@/components/BangkokMap"
 import TeacherTable from "@/components/TeacherTable"
 import { MOCK_VOLUNTEER_DATA } from "@/lib/mock-data"
 import Image from "next/image"
+import DoodleBallCTAButton from "@/components/DoodleBallCTAButton"
+import CTAButton from "@/components/CTAButton"
 
 export default function Home() {
     const [filteredData, setFilteredData] = useState<VolunteerTeacher[]>(MOCK_VOLUNTEER_DATA)
@@ -38,6 +40,11 @@ export default function Home() {
         }))
     }, [filteredData])
 
+    const onClickApply = useCallback(() => {
+        // open new tab to forms.gle/8XreJSurPgqZCkVP7
+        window.open("https://forms.gle/8XreJSurPgqZCkVP7", "_blank")
+
+    }, [])
     return (
         <div className="min-h-screen bg-background">
             {/* Header */}
@@ -53,8 +60,8 @@ export default function Home() {
                     />
                     <div>
 
-                        <h1 className="text-3xl font-bold mb-2">Saturday Volunteer Teachers</h1>
-                        <p className="text-primary-foreground/90">Find and manage volunteer teaching positions in Bangkok schools</p>
+                        <h1 className="text-3xl font-bold mb-2">คำแหน่งครูอาสาที่เปิดรับ (กทม)</h1>
+                        <CTAButton title={"สมัครสอนวันเสาร์"} onClickCallback={onClickApply} />
                     </div>
                 </div>
             </header>

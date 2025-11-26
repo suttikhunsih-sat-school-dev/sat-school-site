@@ -2,9 +2,9 @@
 
 import React, { useMemo } from "react";
 import Image from "next/image";
-import useMainPageSection from "./hooks/useMainPageSection";
-import DoodleBallCTAButton from "./components/DoodleBallCTAButton";
-import SatSchoolMainQuote from "./components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
+import useMainPageSection from "../hooks/useMainPageSection";
+import DoodleBallCTAButton from "../components/DoodleBallCTAButton";
+import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
@@ -60,11 +60,11 @@ const HomePage = () => {
         style={{ willChange: 'transform' }}
       >
         <Image
-          src="/sat-school-logo-no-bg.png"
+          src="/Logo-Saturday-school-white.png"
           alt="Saturday School Logo"
-          width={1000}
-          height={1000}
-          className="drop-shadow-lg w-full h-auto"
+          width={800}
+          height={800}
+          className="drop-shadow-xl h-auto"
           priority
         />
       </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import HamburgerMenu from "./components/HamburgerMenu";
+import HamburgerMenu from "../components/HamburgerMenu";
 import { fcLamoon } from "./fonts";
 
 export const metadata: Metadata = {

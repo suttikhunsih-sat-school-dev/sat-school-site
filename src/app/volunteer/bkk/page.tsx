@@ -1,13 +1,22 @@
 "use client"
 
 import { useState, useMemo, useCallback } from "react"
+import dynamic from "next/dynamic"
 import type { VolunteerTeacher } from "@/lib/types"
-import BangkokMap from "@/components/BangkokMap"
 import TeacherTable from "@/components/TeacherTable"
 import { MOCK_VOLUNTEER_DATA } from "@/lib/mock-data"
 import Image from "next/image"
-import DoodleBallCTAButton from "@/components/DoodleBallCTAButton"
 import CTAButton from "@/components/CTAButton"
+
+// Dynamically import the map with no SSR
+const BangkokMap = dynamic(() => import("@/components/BangkokMap"), {
+    ssr: false,
+    loading: () => (
+        <div className="w-full h-96 md:h-[600px] bg-gray-200 rounded-lg flex items-center justify-center">
+            <p className="text-gray-500">Loading map...</p>
+        </div>
+    ),
+})
 
 export default function Home() {
     const [filteredData, setFilteredData] = useState<VolunteerTeacher[]>(MOCK_VOLUNTEER_DATA)
@@ -43,8 +52,8 @@ export default function Home() {
     const onClickApply = useCallback(() => {
         // open new tab to forms.gle/8XreJSurPgqZCkVP7
         window.open("https://forms.gle/8XreJSurPgqZCkVP7", "_blank")
-
     }, [])
+
     return (
         <div className="min-h-screen bg-background">
             {/* Header */}
@@ -59,7 +68,6 @@ export default function Home() {
                         priority
                     />
                     <div>
-
                         <h1 className="text-3xl font-bold mb-2">คำแหน่งครูอาสาที่เปิดรับ (กทม)</h1>
                         <CTAButton title={"สมัครสอนวันเสาร์"} onClickCallback={onClickApply} />
                     </div>
@@ -68,7 +76,7 @@ export default function Home() {
 
             {/* Main Content */}
             <main className=" mx-auto px-4 md:px-8 py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
                     <div className="absolute top-[2px] right-8 w-32 md:w-40 lg:w-48">
                         <Image
                             src="/Boy_BusyPaperwork.png"
@@ -99,7 +107,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* Map Section , make it take all space lefted if possible*/}
+                    {/* Map Section */}
                     <div className="lg:col-span-1">
                         <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden sticky top-8">
                             <div className="p-4 border-b border-border">

@@ -62,36 +62,36 @@ export default function Home() {
                     <Image
                         src="/Logo-Saturday-school-white.png"
                         alt="Saturday School Logo"
-                        width={120}
-                        height={120}
+                        width={80}
+                        height={80}
                         className="drop-shadow-xl h-auto"
                         priority
                     />
-                    <div>
-                        <h1 className="text-3xl font-bold mb-2">คำแหน่งครูอาสาที่เปิดรับ (กทม)</h1>
-                        <CTAButton title={"สมัครสอนวันเสาร์"} onClickCallback={onClickApply} />
-                    </div>
+                    <h1 className="text-2xl font-bold">Saturday School Bangkok - อาสาสมัคร โครงการห้องเรียนกรุงเทพ</h1>
                 </div>
             </header>
 
             {/* Main Content */}
             <main className=" mx-auto px-4 md:px-8 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
-                    <div className="absolute top-[2px] right-8 w-32 md:w-40 lg:w-48">
-                        <Image
-                            src="/Boy_BusyPaperwork.png"
-                            alt="BoyBusyPaperwork"
-                            width={140}
-                            height={140}
-                            className="drop-shadow-lg h-auto"
-                            priority
-                        />
-                    </div>
                     {/* Table Section */}
                     <div className="lg:col-span-2">
                         <div className="bg-card rounded-lg border border-border shadow-sm">
                             <div className="p-6 border-b border-border">
-                                <h2 className="text-xl font-semibold text-foreground">Positions Available</h2>
+                                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                    <h1 className="text-3xl font-bold mb-2">ตำแหน่งครูอาสาที่เปิดรับ (กทม)</h1>
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src="/Boy_BusyPaperwork.png"
+                                            alt="BoyBusyPaperwork"
+                                            width={120}
+                                            height={120}
+                                            className="drop-shadow-lg h-auto"
+                                            priority
+                                        />
+                                        <CTAButton title={"สมัคร (ทุกตำแหน่ง) คลิ๊กตรงนี้ !"} onClickCallback={onClickApply} />
+                                    </div>
+                                </div>
                                 <p className="text-sm text-muted-foreground mt-1">
                                     Showing {paginatedData.length} of {filteredData.length} positions
                                 </p>

@@ -1,23 +1,11 @@
 "use client"
 
 import { useState, useMemo, useCallback } from "react"
-import dynamic from "next/dynamic"
 import type { VolunteerTeacher } from "@/lib/types"
-import TeacherTable from "@/components/TeacherTable"
 import { MOCK_VOLUNTEER_DATA } from "@/lib/mock-data"
 import Image from "next/image"
 import CTAButton from "@/components/CTAButton"
 import VolunteerTableChildrenPathway from "@/components/VolunteerTableChildrenPathway"
-
-// Dynamically import the map with no SSR
-const BangkokMap = dynamic(() => import("@/components/BangkokMap"), {
-    ssr: false,
-    loading: () => (
-        <div className="w-full h-96 md:h-[600px] bg-gray-200 rounded-lg flex items-center justify-center">
-            <p className="text-gray-500">Loading map...</p>
-        </div>
-    ),
-})
 
 export default function Home() {
     const [filteredData, setFilteredData] = useState<VolunteerTeacher[]>(MOCK_VOLUNTEER_DATA)
@@ -39,16 +27,16 @@ export default function Home() {
     const paginatedData = filteredData.slice(startIndex, endIndex)
 
     // Get schools for map from all filtered data
-    const schoolsForMap = useMemo(() => {
-        return filteredData.map((teacher) => ({
-            id: teacher.id,
-            name: teacher.schoolName,
-            subject: teacher.subject,
-            timeline: teacher.timeline,
-            latitude: teacher.latitude,
-            longitude: teacher.longitude,
-        }))
-    }, [filteredData])
+    // const schoolsForMap = useMemo(() => {
+    //     return filteredData.map((teacher) => ({
+    //         id: teacher.id,
+    //         name: teacher.schoolName,
+    //         subject: teacher.subject,
+    //         timeline: teacher.timeline,
+    //         latitude: teacher.latitude,
+    //         longitude: teacher.longitude,
+    //     }))
+    // }, [filteredData])
 
     const onClickApply = useCallback(() => {
         // open new tab to forms.gle/8XreJSurPgqZCkVP7

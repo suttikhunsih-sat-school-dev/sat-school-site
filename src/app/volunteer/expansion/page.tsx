@@ -9,35 +9,35 @@ import { MOCK_EXPANSION_DATA } from "@/lib/mock-data"
 const REGIONS = [
     {
         name: "north",
-        label: "🏔️ North",
+        label: "ภาคเหนือ",
         color: "bg-green-500",
         borderColor: "border-green-500",
         textColor: "text-green-600",
     },
     {
         name: "northeast",
-        label: "🌾 Northeast",
+        label: "ภาคอีสาน",
         color: "bg-red-500",
         borderColor: "border-red-500",
         textColor: "text-red-600",
     },
     {
         name: "central",
-        label: "🏙️ Central",
+        label: "ภาคกลาง",
         color: "bg-orange-500",
         borderColor: "border-orange-500",
         textColor: "text-orange-600",
     },
     {
         name: "southern",
-        label: "🌴 Southern",
+        label: "ภาคใต้",
         color: "bg-blue-500",
         borderColor: "border-blue-500",
         textColor: "text-blue-600",
     },
     {
         name: "eastern",
-        label: "🏖️ Eastern",
+        label: "ภาคตะวันออก",
         color: "bg-purple-500",
         borderColor: "border-purple-500",
         textColor: "text-purple-600",
@@ -104,7 +104,7 @@ export default function ExpansionPage() {
                 </div>
 
                 {/* Projects List */}
-                {selectedRegion && (
+                {selectedRegion ? (
                     <div className="bg-white rounded-xl border border-indigo-200 shadow-lg overflow-hidden">
                         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-b border-indigo-200 flex items-center justify-between">
                             <h2 className="text-2xl font-bold text-gray-800">
@@ -137,14 +137,40 @@ export default function ExpansionPage() {
                             ))}
                         </div>
                     </div>
-                )}
+                )
+                    :
+                    <div className="bg-white rounded-xl border border-indigo-200 shadow-lg overflow-hidden">
+                        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 border-b border-indigo-200 flex items-center justify-between">
+                            <h2 className="text-2xl font-bold text-gray-800">
+                                All Projects
+                            </h2>
+                        </div>
 
-                {/* Empty State */}
-                {!selectedRegion && (
-                    <div className="text-center py-16">
-                        <p className="text-gray-500 text-lg">Select a region to view open teaching positions</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+                            {MOCK_EXPANSION_DATA.map((project) => (
+                                <Card
+                                    key={project.id}
+                                    className="p-4 border-indigo-200 hover:shadow-lg transition-shadow bg-gradient-to-br from-white to-blue-50"
+                                >
+                                    <div className="space-y-2">
+                                        <h3 className="font-bold text-gray-800 text-sm">{project.schoolName}</h3>
+                                        <p className={`text-xs font-semibold ${REGIONS.find((r) => r.name === selectedRegion)?.textColor}`}>
+                                            {project.district}
+                                        </p>
+                                        <div className="pt-2 border-t border-indigo-100">
+                                            <p className="text-xs text-gray-500">
+                                                📅 {new Date(project.startDate).toLocaleDateString("th-TH")} -{" "}
+                                                {new Date(project.endDate).toLocaleDateString("th-TH")}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
                     </div>
-                )}
+
+
+                }
             </main>
         </div>
     )

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
@@ -21,7 +20,7 @@ const WhatWeDo = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const bgRef = useRef<HTMLDivElement>(null);
     const mascotImageRef = useRef<HTMLDivElement>(null);
-    const houseRef = useRef<HTMLDivElement>(null);
+    // const houseRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<ContentRef>({});
 
     useEffect(() => {

@@ -38,7 +38,7 @@ export default function VolunteerTableChildrenPathway({
 
         onFilterChange(filtered)
         onPageChange(1) // Reset to first page on filter change
-    }, [searchSubject, allData, onFilterChange, onPageChange])
+    }, [searchSubject, allData, onFilterChange, onPageChange, searchTimeline])
 
     return (
         <div className="w-full">

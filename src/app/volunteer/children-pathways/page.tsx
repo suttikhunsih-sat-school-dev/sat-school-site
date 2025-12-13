@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useCallback } from "react"
+import { useState, useCallback } from "react"
 import type { VolunteerTeacher } from "@/lib/types"
 import { MOCK_VOLUNTEER_DATA } from "@/lib/mock-data"
 import Image from "next/image"

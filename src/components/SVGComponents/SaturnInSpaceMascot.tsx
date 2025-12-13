@@ -1,6 +1,6 @@
 import * as React from "react"
 interface SaturnInSpaceMascotProps {
-    [key: string]: any;
+    [key: string]: string | number | boolean | React.ReactNode;
 }
 const SaturnInSpaceMascot = (props: SaturnInSpaceMascotProps) => (
     <svg

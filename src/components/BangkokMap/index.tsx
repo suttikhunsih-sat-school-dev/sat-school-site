@@ -21,15 +21,15 @@ interface BangkokMapProps {
 }
 
 // Fix default marker icon issue
-const defaultIcon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
-})
+// const defaultIcon = L.icon({
+//   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+//   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+//   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+//   iconSize: [25, 41],
+//   iconAnchor: [12, 41],
+//   popupAnchor: [1, -34],
+//   shadowSize: [41, 41],
+// })
 
 // Custom marker icon with school pin
 const schoolIcon = L.icon({

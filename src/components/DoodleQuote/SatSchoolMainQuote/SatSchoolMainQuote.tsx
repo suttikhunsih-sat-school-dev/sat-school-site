@@ -1,9 +1,4 @@
 import React, { JSX, useRef } from "react";
-
-/**
- * SatSchoolMainQuote — Doodled Bouncy Jelly Container
- * Fun, child-friendly animated blob with sharp doodle borders
- */
 export default function SatSchoolMainQuote(): JSX.Element {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -35,7 +30,7 @@ export default function SatSchoolMainQuote(): JSX.Element {
             >
                 <div
                     style={{
-                        fontSize: "clamp(32px, 8vw, 72px)",
+                        fontSize: "clamp(32px, 4vw, 72px)",
                         fontWeight: 900,
                         color: "white",
                         lineHeight: "1.2",
@@ -49,10 +44,9 @@ export default function SatSchoolMainQuote(): JSX.Element {
                 <div
                     style={{
                         marginTop: "16px",
-                        fontSize: "clamp(28px, 7vw, 64px)",
+                        fontSize: "clamp(28px, 4vw, 64px)",
                         fontWeight: 900,
                         color: "white",
-                        lineHeight: "1.2",
                         textShadow: "3px 3px 0 #1e55a5, -1px -1px 0 rgba(0, 0, 0, 0.1)",
                         letterSpacing: "-0.02em"
                     }}

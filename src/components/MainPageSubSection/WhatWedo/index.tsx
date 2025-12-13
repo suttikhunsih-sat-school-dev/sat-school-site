@@ -34,7 +34,7 @@ const WhatWeDo = () => {
                 trigger: containerRef.current,
                 start: "top 80%",
                 end: "top 20%",
-                scrub: 1,
+                scrub: 5,
                 markers: false,
             },
         });
@@ -46,7 +46,7 @@ const WhatWeDo = () => {
                 start: "top top",
                 end: "bottom center",
                 pin: true,
-                scrub: 1,
+                scrub: 5,
                 markers: false,
             },
         });
@@ -80,52 +80,52 @@ const WhatWeDo = () => {
             opacity: 1,
             scale: 1,
             x: 0,
-            duration: 1,
+            duration: 2,
             ease: "power3.out",
         })
             // 2.1 - "What is Saturday School?" box appears from right
-            .to(contentRef.current.whatIsBox, {
+            .to(contentRef.current.whatIsBox!, {
                 x: 0,
                 scale: 1,
                 opacity: 1,
-                duration: 1,
+                duration: 2,
                 ease: "back.out",
             }, 0.5)
             // 2.2 - Subtext appears
-            .to(contentRef.current.subtextBox, {
+            .to(contentRef.current.subtextBox!, {
                 opacity: 1,
                 y: 0,
                 duration: 0.8,
             }, 1)
             // Pause
-            .to({}, { duration: 1 })
+            .to({}, { duration: 2 })
             // 2.3 - Both boxes disappear to the left
             .to(
-                [contentRef.current.whatIsBox, contentRef.current.subtextBox],
+                [contentRef.current.whatIsBox!, contentRef.current.subtextBox!],
                 {
                     x: -300,
                     scale: 0,
                     opacity: 0,
-                    duration: 1,
+                    duration: 2,
                     ease: "back.in",
                 },
                 2.8
             )
             // 2.4 - "What We do?" box appears
-            .to(contentRef.current.whatWeDoBox, {
+            .to(contentRef.current.whatWeDoBox!, {
                 x: 0,
                 scale: 1,
                 opacity: 1,
-                duration: 1,
+                duration: 2,
                 ease: "back.out",
             }, 2.8)
             // 2.5 - Pillars appear one by one
-            .to(contentRef.current.pillarsContainer, {
+            .to(contentRef.current.pillarsContainer!, {
                 opacity: 1,
                 duration: 0.5,
             }, 3.8)
             // 2.6-2.9 - Images appear and animate with text
-            .to(contentRef.current.imagesContainer, {
+            .to(contentRef.current.imagesContainer!, {
                 opacity: 1,
                 duration: 0.5,
             }, 4.3);
@@ -180,7 +180,7 @@ const WhatWeDo = () => {
                     className="absolute bg-black/50 backdrop-blur right-1/4 top-24 mt-24 px-8 py-4 max-w-2xl"
                 >
                     <p className="text-3xl text-white">
-                        เราคือมูลนิธิเพื่อการศึกษาที่ไม่แสวงหากำไรที่ต้องการสร้างพื้นที่การเรียนรู้ที่เปิดโอกาสให้ทุกคนในสังคมมีส่วนร่วม เราเชื่อว่าทุกคนสามารถเป็นส่วนหนึ่งของการเปลี่ยนแปลงทางการศึกษา โดยการสนับสนุนให้เด็ก ๆ กล้าที่จะเดินตามความฝันและกลับมาสร้างเปลี่ยนแปลงให้กับชุมชนและสังคม
+                        เราคือมูลนิธิเพื่อการศึกษาที่ไม่แสวงหากำไร เพื่อสร้างพื้นที่การเรียนรู้ที่เปิดโอกาสให้ทุกคนในสังคมมีส่วนร่วม เราเชื่อว่าทุกคนสามารถเป็นส่วนหนึ่งของการเปลี่ยนแปลงทางการศึกษา โดยการสนับสนุนให้เด็ก ๆ กล้าที่จะเดินตามความฝันและกลับมาสร้างเปลี่ยนแปลงให้กับชุมชนและสังคม
                     </p>
                 </div>
 

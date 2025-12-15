@@ -221,19 +221,16 @@ const WhatWeDo = () => {
                     }}
                     className="absolute top-2/3 w-full px-4 space-y-6"
                 >
-                    {[1, 2, 3, 4].map((item) => (
+                    {/* {[1, 2, 3, 4].map((item) => (
                         <div key={item} className="relative w-full h-48 flex items-center gap-4">
-                            {/* Mock Image */}
                             <div className="w-full h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0 hover:scale-95 transition-transform">
                                 <span className="text-white text-3xl font-bold">Image {item}</span>
                             </div>
-
-                            {/* Text Overlay */}
                             <div className="absolute bottom-4 left-4 bg-black/60 px-4 py-2 rounded">
                                 <p className="text-white font-bold">Volunteer Project {item}</p>
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </div>
 

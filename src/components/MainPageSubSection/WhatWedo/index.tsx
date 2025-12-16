@@ -179,22 +179,27 @@ const WhatWeDo = () => {
                     className="absolute bg-black/50 backdrop-blur right-1/4 top-24 mt-24 px-8 py-4 max-w-2xl"
                 >
                     <p className="text-3xl text-white">
-                        เราคือมูลนิธิเพื่อการศึกษาที่ไม่แสวงหากำไร เพื่อสร้างพื้นที่การเรียนรู้ที่เปิดโอกาสให้ทุกคนในสังคมมีส่วนร่วม เราเชื่อว่าทุกคนสามารถเป็นส่วนหนึ่งของการเปลี่ยนแปลงทางการศึกษา โดยการสนับสนุนให้เด็ก ๆ กล้าที่จะเดินตามความฝันและกลับมาสร้างเปลี่ยนแปลงให้กับชุมชนและสังคม
+                        {/* เราคือมูลนิธิเพื่อการศึกษาที่ไม่แสวงหากำไร เพื่อสร้างพื้นที่การเรียนรู้ที่เปิดโอกาสให้ทุกคนในสังคมมีส่วนร่วม เราเชื่อว่าทุกคนสามารถเป็นส่วนหนึ่งของการเปลี่ยนแปลงทางการศึกษา โดยการสนับสนุนให้เด็ก ๆ กล้าที่จะเดินตามความฝันและกลับมาสร้างเปลี่ยนแปลงให้กับชุมชนและสังคม */}
+                        มูลนิธิโรงเรียนวันเสาร์เป็นองค์กรไม่แสวงหาผลกำไรที่เชื่อว่า “ทุกคนในสังคมสามารถเป็นส่วนหนึ่งในการพัฒนาการศึกษาไทยได้” เราร่วมสร้างพื้นที่การเรียนรู้นอกห้องเรียนที่เปิดกว้างสำหรับเด็กและเยาวชนไทย
+                    </p>
+                    <br className=""/>
+                     <p className="text-3xl text-white">
+                    โดยดึงพลังจากอาสาสมัครหลากหลายอาชีพให้เข้ามาแบ่งปันทักษะ ความรู้ แรงบันดาลใจในห้องเรียนวันเสาร์และโครงการต่าง ๆ ของมูลนิธิ ผสานกับพลังสำคัญจากทุกภาคส่วนในสังคมร่วมส่งเสริมให้เด็กไทยกล้าทำตามคำฝัน และเติบโตไปเป็นคนที่มีพลังพร้อมกลับมาแบ่งปันให้คนรอบข้างและสังคม
                     </p>
                 </div>
 
                 {/* 2.4 - What We Do? Box */}
-                <div
+                {/* <div
                     ref={(el) => {
                         if (el) contentRef.current.whatWeDoBox = el;
                     }}
                     className="absolute bg-black/50 backdrop-blur px-8 py-6 rounded-lg"
                 >
                     <h2 className="text-4xl font-bold text-white">เราทำอะไรบ้าง?</h2>
-                </div>
+                </div> */}
 
                 {/* 2.5 - Pillars Container */}
-                <div
+                {/* <div
                     ref={(el) => {
                         if (el) contentRef.current.pillarsContainer = el;
                     }}
@@ -212,16 +217,16 @@ const WhatWeDo = () => {
                             <p className="text-white text-sm font-semibold">Pillar {pillar}</p>
                         </div>
                     ))}
-                </div>
+                </div> */}
 
                 {/* 2.6-2.9 - Images with Text Container */}
-                <div
+                {/* <div
                     ref={(el) => {
                         if (el) contentRef.current.imagesContainer = el;
                     }}
                     className="absolute top-2/3 w-full px-4 space-y-6"
                 >
-                    {/* {[1, 2, 3, 4].map((item) => (
+                    {[1, 2, 3, 4].map((item) => (
                         <div key={item} className="relative w-full h-48 flex items-center gap-4">
                             <div className="w-full h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0 hover:scale-95 transition-transform">
                                 <span className="text-white text-3xl font-bold">Image {item}</span>
@@ -230,8 +235,8 @@ const WhatWeDo = () => {
                                 <p className="text-white font-bold">Volunteer Project {item}</p>
                             </div>
                         </div>
-                    ))} */}
-                </div>
+                    ))}
+                </div> */}
             </div>
 
         </div>

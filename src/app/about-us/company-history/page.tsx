@@ -193,7 +193,7 @@ export default function HistoryPage() {
           <h2 className="text-4xl md:text-5xl font-bold text-white text-balance">The Journey Continues</h2>
           <p className="text-xl text-white/90 leading-relaxed text-pretty">
             Saturday School continues to bring broader change for children in Bangkok, neighboring areas, and provinces
-            across the country. Together, we're creating a future where every child has the opportunity to discover
+            across the country. Together, we are creating a future where every child has the opportunity to discover
             their potential and make a difference.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-8">

@@ -4,6 +4,7 @@ export interface MenuItem {
     children?: MenuItem[];
     urlNavigate?: string;
 }
+export const DONATION_LINK = "https://www.punboon.org/foundation/projects/donate?foundation_id=01026&project_id=01026001";
 export const menuItems = [
     {
         id: 'mainpage',
@@ -24,7 +25,7 @@ export const menuItems = [
     {
         id: 'donate',
         label: 'Donate',
-        urlNavigate: '/donate',
+        urlNavigate: DONATION_LINK,
     },
     {
         id: 'csr',
@@ -48,4 +49,4 @@ export const menuItems = [
         ]
     },
     { id: 'our-journey', label: 'Our Journey' },
-];  
+];

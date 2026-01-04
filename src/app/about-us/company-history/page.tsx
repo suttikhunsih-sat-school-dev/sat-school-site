@@ -91,13 +91,15 @@ export default function HistoryPage() {
               </div>
               <div className="relative">
                 <div className="absolute -inset-4 bg-[#fbde4f] rounded-3xl -rotate-3 opacity-20"></div>
-                <Image
-                  src="/SSF14.png"
-                  alt="Students working together"
-                  width={600}
-                  height={400}
-                  className="relative rounded-2xl shadow-2xl w-full h-auto"
-                />
+                <div style={{ position: "relative", width: "100%", height: "0", paddingBottom: "66.66%" }}>
+                  <Image
+                    src="/SSF14.png"
+                    alt=""
+                    fill
+                    style={{ objectFit: "cover" }}
+                    className="relative rounded-2xl shadow-2xl w-full h-auto"
+                  />
+                </div>
               </div>
             </div>
 

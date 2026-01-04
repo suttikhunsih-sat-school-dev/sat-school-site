@@ -26,6 +26,7 @@ export const menuItems = [
         id: 'donate',
         label: 'Donate',
         urlNavigate: DONATION_LINK,
+        isOpenNewTab: true,
     },
     {
         id: 'csr',

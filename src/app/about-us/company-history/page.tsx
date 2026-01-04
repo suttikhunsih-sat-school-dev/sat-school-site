@@ -1,9 +1,8 @@
+"use client"
 import Image from "next/image"
-
 export default function HistoryPage() {
   return (
     <div className="min-h-screen bg-[#002060]">
-      {/* Hero Section */}
       <section className="relative overflow-hidden bg-[#002060] pt-16 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -27,7 +26,7 @@ export default function HistoryPage() {
             <div className="relative">
               <div className="absolute -inset-4 bg-[#fbde4f] rounded-3xl rotate-3 opacity-20"></div>
               <Image
-                src="/images/image.png"
+                src="/SSF10.jpg"
                 alt="Saturday School volunteers and students"
                 width={600}
                 height={400}
@@ -48,7 +47,7 @@ export default function HistoryPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <Image
-                src="/images/image.png"
+                src="/sat-activity-image-02.png"
                 alt="Saturday School empowerment sign"
                 width={600}
                 height={400}
@@ -93,7 +92,7 @@ export default function HistoryPage() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-[#fbde4f] rounded-3xl -rotate-3 opacity-20"></div>
                 <Image
-                  src="/images/image.png"
+                  src="/SSF14.png"
                   alt="Students working together"
                   width={600}
                   height={400}
@@ -107,7 +106,7 @@ export default function HistoryPage() {
               <div className="order-2 lg:order-1 relative">
                 <div className="absolute -inset-4 bg-[#fbde4f] rounded-3xl rotate-3 opacity-20"></div>
                 <Image
-                  src="/images/image.png"
+                  src="/sat-activity-image-04.png"
                   alt="Students participating in activities"
                   width={600}
                   height={400}
@@ -138,7 +137,7 @@ export default function HistoryPage() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-[#fbde4f] rounded-3xl -rotate-3 opacity-20"></div>
                 <Image
-                  src="/images/image.png"
+                  src="/SSF1.png"
                   alt="Mission Possible event"
                   width={600}
                   height={400}
@@ -151,12 +150,22 @@ export default function HistoryPage() {
       </section>
 
       {/* Impact Stats Section */}
-      <section className="bg-[#fbde4f] py-24 px-6">
+      {/* add background image */}
+      <section className="bg-[#fbde4f] py-24 px-6 bg-"
+        style={{
+          backgroundImage: "url('/SSF7.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundColor: "rgba(255,255,255,0.6)",
+          backgroundBlendMode: "lighten",
+          opacity: 1,
+        }}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold text-[#002060] mb-6 text-balance">11 Years of Impact</h2>
             <div className="w-24 h-2 bg-[#002060] rounded-full mx-auto mb-8"></div>
-            <p className="text-xl text-[#002060]/90 max-w-3xl mx-auto leading-relaxed text-pretty">
+            <p className="text-3xl text-[#002060]/90 max-w-3xl mx-auto leading-relaxed text-pretty font-semibold">
               Over the past 11 years, the project has been developed as a foundation with remarkable achievements across
               Thailand.
             </p>

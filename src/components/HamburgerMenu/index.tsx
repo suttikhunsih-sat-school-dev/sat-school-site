@@ -102,7 +102,7 @@ const HamburgerMenu = () => {
                 <div className="pt-20 px-4">
                     {menuItems.map((item) => (
                         <div key={item.id} className="mb-4">
-                            <Link href={item.urlNavigate || '#'} key={item.id}>
+                            <Link href={item.urlNavigate || '#'} target={item.isOpenNewTab ? "_blank" : undefined} key={item.id}>
                                 <button
                                     onClick={() => {
                                         if (!item.urlNavigate) {

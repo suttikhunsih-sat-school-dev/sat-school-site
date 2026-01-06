@@ -283,10 +283,10 @@ const WhatWeDo = () => {
             <div ref={mascotImageRef} className="w-1/4 flex items-center justify-center overflow-visible">
                 <div
                     ref={mascotInnerRef}
-                    className="flex flex-col justify-center relative h-full w-full"
-                    style={{
-                        animation: 'mascotBob 3s ease-in-out infinite, mascotSway 4s ease-in-out infinite, mascotPulse 4s ease-in-out infinite'
-                    }}
+                    className="flex flex-col justify-center relative h-full w-full transition-transform"
+                // style={{
+                //     animation: 'mascotBob 3s ease-in-out infinite, mascotSway 4s ease-in-out infinite, mascotPulse 4s ease-in-out infinite'
+                // }}
                 >
                     <style>{`
                         @keyframes mascotBob {

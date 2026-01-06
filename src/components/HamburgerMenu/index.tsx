@@ -107,6 +107,8 @@ const HamburgerMenu = () => {
                                     onClick={() => {
                                         if (!item.urlNavigate) {
                                             toggleSubMenu(item.id)
+                                        } else {
+                                            setIsOpen(false);
                                         }
                                     }}
                                     className="text-white transition-colors w-full text-left py-2 flex justify-between items-center"
@@ -127,6 +129,7 @@ const HamburgerMenu = () => {
                                             <button
                                                 key={child.id}
                                                 className="text-white/80 transition-colors w-full text-left py-1"
+                                                onClick={() => setIsOpen(false)}
                                             >
                                                 {child.label}
                                             </button>

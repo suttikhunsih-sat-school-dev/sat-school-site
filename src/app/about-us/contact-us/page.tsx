@@ -104,7 +104,7 @@ export default function ContactUs() {
         <div className="max-w-7xl mx-auto text-center space-y-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white text-balance">Get In Touch</h2>
           <p className="text-xl text-white/90 leading-relaxed text-pretty max-w-2xl mx-auto">
-            Have questions or want to join our community? Reach out to us through any of the channels above. We'd love to hear from you!
+            Have questions or want to join our community? Reach out to us through any of the channels above. We&apos;d love to hear from you!
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-8">
             <div className="w-16 h-16 bg-[#fbde4f] rounded-full animate-bounce"></div>

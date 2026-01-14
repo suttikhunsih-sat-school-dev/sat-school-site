@@ -5,6 +5,8 @@ import Image from "next/image";
 import useMainPageSection from "../hooks/useMainPageSection";
 import DoodleBallCTAButton from "../components/DoodleBallCTAButton";
 import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
+import InteractiveCloud from "../components/InteractiveCloud";
+import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
@@ -53,7 +55,7 @@ const HomePage = () => {
         />
       </div>
 
-      {/* Fixed logo — always visible for section 1 & 2 */}
+      {/* <InteractiveCloud /> */}
       <div
         ref={logoRef}
         className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
@@ -71,6 +73,34 @@ const HomePage = () => {
       <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
       </div>
+      {/* Fixed logo — always visible for section 1 & 2 */}
+      <div className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none">
+        {/* <div className="absolute">
+          <div className="relative">
+            <InteractiveCloud />
+            <div className="absolute inset-0 z-10 flex items-center justify-center">
+              <div
+                ref={logoRef}
+                className="flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
+                style={{ willChange: 'transform' }}
+              >
+                <Image
+                  src="/Logo-Saturday-school-white.png"
+                  alt="Saturday School Logo"
+                  width={600}
+                  height={600}
+                  className="drop-shadow-xl h-auto"
+                  priority
+                />
+              </div>
+              <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
+                <SatSchoolMainQuote />
+              </div>
+            </div>
+          </div>
+        </div> */}
+      </div>
+
 
 
       {/* Scrollable content sections */}

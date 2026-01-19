@@ -6,17 +6,17 @@ import useMainPageSection from "../hooks/useMainPageSection";
 import DoodleRectangleCTAButton from "../components/DoodleRectangleCTAButton";
 import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
 import InteractiveCloud from "../components/InteractiveCloud";
-import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
+// import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
 import SaturnWithRedFlagMascotWrapper from "@/components/Mascot/SaturnWithRedFlagMascotWrapper";
-import SaturnInSpaceMascot from "@/components/SVGComponents/SaturnInSpaceMascot";
+// import SaturnInSpaceMascot from "@/components/SVGComponents/SaturnInSpaceMascot";
 
-const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
+const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.0;
 
 const HomePage = () => {
   const {
     sections,
     sectionsRef,
-    videoRef,
+    // videoRef,
     containerRef,
     logoRef,
     scrollY,
@@ -51,6 +51,25 @@ const HomePage = () => {
           }}
         />
       </div> */}
+      <div className="fixed top-0 left-0 w-full h-screen z-[1]">
+        {/* <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          style={{ opacity }}
+        >
+          <source src="/sat-school-yt.mp4" type="video/mp4" />
+        </video> */}
+        <div
+          className="absolute top-0 left-0 w-full h-full transition-colors"
+          style={{
+            backgroundColor: `rgba(30, 85, 165, ${1 - opacity})`,
+          }}
+        />
+      </div>
 
       {/* <InteractiveCloud /> */}
       <div

@@ -3,7 +3,7 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import useMainPageSection from "../hooks/useMainPageSection";
-import DoodleBallCTAButton from "../components/DoodleBallCTAButton";
+import DoodleRectangleCTAButton from "../components/DoodleRectangleCTAButton";
 import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
 import InteractiveCloud from "../components/InteractiveCloud";
 import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
@@ -29,11 +29,6 @@ const HomePage = () => {
 
   return (
     <div ref={containerRef} className="relative">
-      <div className="flex flex-col  fixed top-10 right-[0px] transform pr-[40px]  z-30 space-y-4 ">
-        <DoodleBallCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
-        <DoodleBallCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
-        <DoodleBallCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
-      </div>
       {/* Background video + overlay */}
       {/* <div className="fixed top-0 left-0 w-full h-screen z-[1]">
         <video
@@ -70,44 +65,24 @@ const HomePage = () => {
           priority
         />
       </div>
-      <div ref={quoteRef} className="fixed bottom-[1px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
+      <div ref={quoteRef} className="fixed bottom-[0px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
       </div>
       <div className="fixed bottom-[-200px] left-0 w-full flex justify-center items-center z-[3]">
         <InteractiveCloud />
       </div>
-
-
-
-      {/* Fixed logo — always visible for section 1 & 2 */}
-      <div className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none">
-        {/* <div className="absolute">
-          <div className="relative">
-            <InteractiveCloud />
-            <div className="absolute inset-0 z-10 flex items-center justify-center">
-              <div
-                ref={logoRef}
-                className="flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
-                style={{ willChange: 'transform' }}
-              >
-                <Image
-                  src="/Logo-Saturday-school-white.png"
-                  alt="Saturday School Logo"
-                  width={600}
-                  height={600}
-                  className="drop-shadow-xl h-auto"
-                  priority
-                />
-              </div>
-              <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
-                <SatSchoolMainQuote />
-              </div>
-            </div>
-          </div>
-        </div> */}
+      <div className="fixed bottom-[60px] left-0 w-full flex justify-center items-center z-[3] gap-6">
+        <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
+        <DoodleRectangleCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
+        <DoodleRectangleCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
       </div>
-
-
+      {/* <div className="fixed bottom-[-230px] bg-[#1e55a5] py-20 flex flex-col items-center justify-center gap-8 w-full">
+        <div className="flex flex-wrap gap-8 justify-center px-4">
+          <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
+          <DoodleRectangleCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
+          <DoodleRectangleCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
+        </div>
+      </div> */}
 
       {/* Scrollable content sections */}
       {sections.map((s, i) => (
@@ -121,6 +96,9 @@ const HomePage = () => {
           {s.content}
         </section>
       ))}
+
+      {/* Footer with CTA buttons */}
+
     </div>
   );
 };

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import WhatWeDo from "../components/MainPageSubSection/WhatWedo";
 import ProjectsPillarForVolunteerSection from "../components/MainPageSubSection/ProjectsPillarForVolunteerSection";
+import LandingPageFirstPage from "@/components/MainPageSubSection/LandingPageFirstPage";
 
 const useMainPageSection = () => {
     const scrollToSection = (id: string) => {
@@ -17,7 +18,9 @@ const useMainPageSection = () => {
     const sectionsRef = useRef<HTMLElement[]>([]);
     const sections = [
         {
-            id: "section1", content: <></>
+            id: "section1", content: (
+                <LandingPageFirstPage />
+            )
         },
         {
             id: "section2",
@@ -75,12 +78,39 @@ const useMainPageSection = () => {
 
         gsap.to(quoteRef.current, {
             opacity: 0,
+            y: 50,
             scrollTrigger: {
                 trigger: sectionsRef.current[1],
                 start: "top 80%",
                 end: "top 20%",
                 scrub: 1,
                 markers: false, // Set to true for debugging
+            },
+        });
+
+        // Animate out mascot when entering section 2
+        gsap.to('[data-mascot-element]', {
+            opacity: 0,
+            x: -300,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
+            },
+        });
+
+        // Animate out cloud when entering section 2
+        gsap.to('[data-cloud-element]', {
+            opacity: 0,
+            y: 100,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                start: "top 80%",
+                end: "top 20%",
+                scrub: 1,
             },
         });
 

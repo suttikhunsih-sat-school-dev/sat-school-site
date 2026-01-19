@@ -86,16 +86,7 @@ const HomePage = () => {
           priority
         />
       </div>
-      <div className="fixed bottom-[140px] left-[-420px] w-full flex justify-center items-center z-[4]">
-        <SaturnWithRedFlagMascotWrapper />
-      </div>
 
-      <div ref={quoteRef} className="fixed bottom-[0px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
-        <SatSchoolMainQuote />
-      </div>
-      <div className="fixed bottom-[-200px] left-0 w-full flex justify-center items-center z-[3]">
-        <InteractiveCloud />
-      </div>
 
       <div className="fixed bottom-[60px] left-0 w-full flex justify-center items-center z-[3] gap-6">
         <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />

@@ -7,6 +7,8 @@ import DoodleRectangleCTAButton from "../components/DoodleRectangleCTAButton";
 import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
 import InteractiveCloud from "../components/InteractiveCloud";
 import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
+import SaturnWithRedFlagMascotWrapper from "@/components/Mascot/SaturnWithRedFlagMascotWrapper";
+import SaturnInSpaceMascot from "@/components/SVGComponents/SaturnInSpaceMascot";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
 
@@ -53,36 +55,35 @@ const HomePage = () => {
       {/* <InteractiveCloud /> */}
       <div
         ref={logoRef}
-        className="fixed top-1/5 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
+        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
         style={{ willChange: 'transform' }}
       >
         <Image
           src="/Logo-Saturday-school-white.png"
           alt="Saturday School Logo"
-          width={280}
-          height={280}
+          width={480}
+          height={480}
           className="drop-shadow-xl h-auto"
           priority
         />
       </div>
+      <div className="fixed bottom-[140px] left-[-420px] w-full flex justify-center items-center z-[4]">
+        <SaturnWithRedFlagMascotWrapper />
+      </div>
+
       <div ref={quoteRef} className="fixed bottom-[0px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
       </div>
       <div className="fixed bottom-[-200px] left-0 w-full flex justify-center items-center z-[3]">
         <InteractiveCloud />
       </div>
+
       <div className="fixed bottom-[60px] left-0 w-full flex justify-center items-center z-[3] gap-6">
         <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
         <DoodleRectangleCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
         <DoodleRectangleCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
       </div>
-      {/* <div className="fixed bottom-[-230px] bg-[#1e55a5] py-20 flex flex-col items-center justify-center gap-8 w-full">
-        <div className="flex flex-wrap gap-8 justify-center px-4">
-          <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
-          <DoodleRectangleCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
-          <DoodleRectangleCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
-        </div>
-      </div> */}
+
 
       {/* Scrollable content sections */}
       {sections.map((s, i) => (
@@ -96,8 +97,6 @@ const HomePage = () => {
           {s.content}
         </section>
       ))}
-
-      {/* Footer with CTA buttons */}
 
     </div>
   );

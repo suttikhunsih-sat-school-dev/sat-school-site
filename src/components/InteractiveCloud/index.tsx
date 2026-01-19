@@ -83,9 +83,8 @@ export default function InteractiveCloud({ children }: { children?: ReactNode })
         const pokeRadius = 150 // Distance from edge point to detect "poke"
         const pokeDepth = 80 // Maximum depth of poke inward
         const pullRadius = 100 // Distance from edge point to detect "pull"
-        const pullStrength = 60 // Maximum pull outward strength
+        const pullStrength = 100 // Maximum pull outward strength
         const noiseScale = 15
-        const noiseFrequency = 0.5
 
         const animate = () => {
             const currentTime = Date.now()

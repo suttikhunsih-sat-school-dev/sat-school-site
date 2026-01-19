@@ -35,7 +35,7 @@ const HomePage = () => {
         <DoodleBallCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
       </div>
       {/* Background video + overlay */}
-      <div className="fixed top-0 left-0 w-full h-screen z-[1]">
+      {/* <div className="fixed top-0 left-0 w-full h-screen z-[1]">
         <video
           ref={videoRef}
           autoPlay
@@ -53,26 +53,32 @@ const HomePage = () => {
             backgroundColor: `rgba(30, 85, 165, ${1 - opacity})`,
           }}
         />
-      </div>
+      </div> */}
 
       {/* <InteractiveCloud /> */}
       <div
         ref={logoRef}
-        className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
+        className="fixed top-1/5 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
         style={{ willChange: 'transform' }}
       >
         <Image
           src="/Logo-Saturday-school-white.png"
           alt="Saturday School Logo"
-          width={600}
-          height={600}
+          width={280}
+          height={280}
           className="drop-shadow-xl h-auto"
           priority
         />
       </div>
-      <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
+      <div ref={quoteRef} className="fixed bottom-[1px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
         <SatSchoolMainQuote />
       </div>
+      <div className="fixed bottom-[-200px] left-0 w-full flex justify-center items-center z-[3]">
+        <InteractiveCloud />
+      </div>
+
+
+
       {/* Fixed logo — always visible for section 1 & 2 */}
       <div className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none">
         {/* <div className="absolute">

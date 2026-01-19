@@ -2,6 +2,10 @@
 
 import { useEffect, useRef, useState, ReactNode } from "react"
 
+// Cloud dimensions - adjust these to change cloud size
+const CLOUD_WIDTH = 1200
+const CLOUD_HEIGHT = 1200
+
 interface Point {
     baseX: number
     baseY: number
@@ -25,15 +29,15 @@ export default function InteractiveCloud({ children }: { children?: ReactNode })
 
     // Initialize cloud points
     useEffect(() => {
-        const centerX = 400
-        const centerY = 300
+        const centerX = CLOUD_WIDTH / 2
+        const centerY = CLOUD_HEIGHT / 2
         const numPoints = 150
 
         // Create control points around an ellipse
         pointsRef.current = Array.from({ length: numPoints }, (_, i) => {
             const angle = (i / numPoints) * Math.PI * 2
-            const radiusX = 280 + Math.random() * 40
-            const radiusY = 200 + Math.random() * 30
+            const radiusX = (CLOUD_WIDTH / 800) * 280 + Math.random() * 40
+            const radiusY = (CLOUD_HEIGHT / 600) * 200 + Math.random() * 30
             const x = centerX + Math.cos(angle) * radiusX
             const y = centerY + Math.sin(angle) * radiusY
             const baseRadius = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2)
@@ -72,8 +76,8 @@ export default function InteractiveCloud({ children }: { children?: ReactNode })
 
     // Animation loop
     useEffect(() => {
-        const centerX = 400
-        const centerY = 300
+        const centerX = CLOUD_WIDTH / 2
+        const centerY = CLOUD_HEIGHT / 2
         const springStrength = 0.3
         const damping = 0.8
         const pokeRadius = 150 // Distance from edge point to detect "poke"
@@ -176,16 +180,16 @@ export default function InteractiveCloud({ children }: { children?: ReactNode })
     }, [mouse])
 
     return (
-        <div ref={containerRef} className="relative cursor-pointer w-[800px] h-[600px] z-[10]">
-            <svg width="800" height="600" viewBox="0 0 800 600" className="drop-shadow-2xl absolute inset-0 pointer-events-none">
+        <div ref={containerRef} className="relative cursor-pointer" style={{ width: `${CLOUD_WIDTH}px`, height: `${CLOUD_HEIGHT}px` }}>
+            <svg width={CLOUD_WIDTH} height={CLOUD_HEIGHT} viewBox={`0 0 ${CLOUD_WIDTH} ${CLOUD_HEIGHT}`} className="drop-shadow-2xl absolute inset-0 pointer-events-none">
                 <defs>
                     <filter id="goo">
                         <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
                         <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="goo" />
                         <feComposite in="SourceGraphic" in2="goo" operator="atop" />
                     </filter>
-                    <pattern id="spaceBg" x="0" y="0" width="800" height="600" patternUnits="userSpaceOnUse">
-                        <image href="/space-bg.png" x="0" y="0" width="800" height="600" />
+                    <pattern id="spaceBg" x="0" y="0" width={CLOUD_WIDTH} height={CLOUD_HEIGHT} patternUnits="userSpaceOnUse">
+                        <image href="/space-bg.png" x="0" y="0" width={CLOUD_WIDTH} height={CLOUD_HEIGHT} />
                     </pattern>
                 </defs>
 
@@ -197,10 +201,6 @@ export default function InteractiveCloud({ children }: { children?: ReactNode })
                     {children}
                 </div>
             )}
-
-            <div className="mt-4 text-center">
-                <p className="font-sans text-sm text-white/80">Move your mouse over the cloud</p>
-            </div>
         </div>
     )
 }

@@ -88,7 +88,7 @@ export default function InteractiveCloud({ children }: { children?: ReactNode })
 
         const animate = () => {
             const currentTime = Date.now()
-            const deltaTime = Math.min((currentTime - lastTimeRef.current) / 1000, 0.1)
+            // const deltaTime = Math.min((currentTime - lastTimeRef.current) / 1000, 0.1)
             lastTimeRef.current = currentTime
 
             const points = pointsRef.current

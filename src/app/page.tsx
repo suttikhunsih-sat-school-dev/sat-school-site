@@ -4,11 +4,6 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import useMainPageSection from "../hooks/useMainPageSection";
 import DoodleRectangleCTAButton from "../components/DoodleRectangleCTAButton";
-import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
-import InteractiveCloud from "../components/InteractiveCloud";
-// import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
-import SaturnWithRedFlagMascotWrapper from "@/components/Mascot/SaturnWithRedFlagMascotWrapper";
-// import SaturnInSpaceMascot from "@/components/SVGComponents/SaturnInSpaceMascot";
 
 const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.0;
 

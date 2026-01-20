@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
@@ -466,7 +466,7 @@ const WhatWeDo = () => {
                     style={{ boxShadow: '0 0 30px rgba(251, 222, 79, 0.5)' }}
                 >
                     <p className="text-lg font-bold text-blue-900 leading-relaxed">
-                        "ทุกคนในสังคมสามารถเป็นส่วนหนึ่งในการพัฒนาการศึกษาไทยได้"
+                        ทุกคนในสังคมสามารถเป็นส่วนหนึ่งในการพัฒนาการศึกษาไทยได้
                     </p>
                 </div>
 
@@ -552,7 +552,7 @@ const WhatWeDo = () => {
                     className="absolute top-40 left-20 bg-black/50 backdrop-blur px-8 py-6 rounded-lg max-w-3xl"
                 >
                     <p className="text-xl text-white leading-relaxed font-semibold">
-                        "เราตั้งใจจะเปลี่ยนชีวิตคนให้เชื่อมั่นในศักยภาพของตนเอง กล้าทำตามความฝัน สามารถรับผิดชอบชีวิตตนเองได้ และพร้อมแบ่งปันให้กับคนรอบข้างและสังคม"
+                        เราตั้งใจจะเปลี่ยนชีวิตคนให้เชื่อมั่นในศักยภาพของตนเอง กล้าทำตามความฝัน สามารถรับผิดชอบชีวิตตนเองได้ และพร้อมแบ่งปันให้กับคนรอบข้างและสังคม
                     </p>
                 </div>
 

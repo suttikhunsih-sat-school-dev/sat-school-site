@@ -1,4 +1,4 @@
-import InteractiveCloud from "@/components/InteractiveCloud";
+
 import React, { JSX, useRef } from "react";
 export default function SatSchoolMainQuote(): JSX.Element {
     const containerRef = useRef<HTMLDivElement | null>(null);

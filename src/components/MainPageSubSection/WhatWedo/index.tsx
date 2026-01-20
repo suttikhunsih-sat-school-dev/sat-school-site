@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
@@ -9,10 +9,23 @@ import SaturnInSpaceMascot from "@/components/SVGComponents/SaturnInSpaceMascot"
 interface ContentRef {
     whatIsBox?: HTMLDivElement | null;
     whatIsText?: HTMLDivElement | null;
+    mainContent?: HTMLDivElement | null;
+    impactStatement?: HTMLDivElement | null;
+    visionBox?: HTMLDivElement | null;
+    missionBox?: HTMLDivElement | null;
     subtextBox?: HTMLDivElement | null;
     whatWeDoBox?: HTMLDivElement | null;
     pillarsContainer?: HTMLDivElement | null;
     imagesContainer?: HTMLDivElement | null;
+    // Step-by-step content refs
+    step1?: HTMLDivElement | null;
+    step2?: HTMLDivElement | null;
+    imageA?: HTMLDivElement | null;
+    step3?: HTMLDivElement | null;
+    imageB?: HTMLDivElement | null;
+    step4?: HTMLDivElement | null;
+    imageC?: HTMLDivElement | null;
+    step5?: HTMLDivElement | null;
 }
 
 const WhatWeDo = () => {
@@ -22,10 +35,24 @@ const WhatWeDo = () => {
     const mascotInnerRef = useRef<HTMLDivElement>(null);
     const cloudsRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<ContentRef>({});
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // Random idle floating animation for mascot
+        const floatingTl = gsap.timeline({ repeat: -1 });
+        floatingTl.to(mascotInnerRef.current, {
+            x: () => gsap.utils.random(-30, 30),
+            y: () => gsap.utils.random(-40, 40),
+            duration: () => gsap.utils.random(4, 6),
+            ease: "sine.inOut",
+        })
+            .to(mascotInnerRef.current, {
+                rotation: () => gsap.utils.random(-5, 5),
+                duration: () => gsap.utils.random(3, 5),
+                ease: "sine.inOut",
+            }, 0);
 
         // Mouse move parallax effect for mascot
         const handleMouseMove = (e: MouseEvent) => {
@@ -59,19 +86,28 @@ const WhatWeDo = () => {
                 .set(cloudsRef.current, { y: 500 }, 0);
         }
 
-        // Animate floating doodles
+        // Animate floating doodles with scroll acceleration
         const doodleElements = document.querySelectorAll('[data-doodle]');
         doodleElements.forEach((doodle, index) => {
             const duration = 12 + (index * 0.8);
             // Start from bottom (off-screen) and float to top (off-screen)
             gsap.set(doodle, { y: 800 });
-            gsap.to(doodle, {
+            const doodleTl = gsap.to(doodle, {
                 y: -1200,
                 rotation: 360 * (index % 2 === 0 ? 1 : -1),
                 duration: duration,
                 repeat: -1,
                 ease: "none",
                 delay: index * 0.8
+            });
+
+            // Add scroll-triggered speed-up and shake effect
+            ScrollTrigger.create({
+                trigger: containerRef.current,
+                onUpdate: (self) => {
+                    const speed = 1 + (self.getVelocity() / 100) * 0.3; // Speed up based on scroll velocity
+                    doodleTl.timeScale(Math.max(0.5, speed));
+                }
             });
         });
 
@@ -85,6 +121,25 @@ const WhatWeDo = () => {
                 scrub: 5,
                 markers: false,
             },
+        });
+
+        // Mascot shake effect on scroll
+        ScrollTrigger.create({
+            trigger: containerRef.current,
+            onUpdate: (self) => {
+                const velocity = Math.abs(self.getVelocity());
+                if (velocity > 0 && mascotInnerRef.current) {
+                    const shake = (velocity / 500) * 8; // Intensity based on scroll speed
+                    gsap.to(mascotInnerRef.current, {
+                        x: () => `+=${gsap.utils.random(-shake, shake)}`,
+                        y: () => `+=${gsap.utils.random(-shake, shake)}`,
+                        rotation: () => `+=${gsap.utils.random(-2, 2)}`,
+                        duration: 0.05,
+                        overwrite: "auto",
+                        ease: "power1.inOut"
+                    });
+                }
+            }
         });
 
         // Main timeline for content parallax
@@ -101,82 +156,193 @@ const WhatWeDo = () => {
 
         // Initial states
         gsap.set([mascotImageRef.current], {
-            opacity: 0,
+            // opacity: 0,
             scale: 0.8,
         });
-        gsap.set(mascotImageRef.current, { x: 300 });
+        gsap.set(mascotImageRef.current, { x: 3000, y: -5000 });
 
         // Set initial states for content boxes
-        if (contentRef.current.whatIsBox) {
-            gsap.set(contentRef.current.whatIsBox, { x: 200, scale: 0.5, opacity: 0 });
+        if (contentRef.current.mainContent) {
+            gsap.set(contentRef.current.mainContent, { opacity: 0, scale: 0.95 });
         }
-        if (contentRef.current.subtextBox) {
-            gsap.set(contentRef.current.subtextBox, { opacity: 0, y: -20 });
+        if (contentRef.current.impactStatement) {
+            gsap.set(contentRef.current.impactStatement, { opacity: 0, scale: 0.95 });
         }
-        if (contentRef.current.whatWeDoBox) {
-            gsap.set(contentRef.current.whatWeDoBox, { x: 200, scale: 0.5, opacity: 0 });
+        if (contentRef.current.visionBox) {
+            gsap.set(contentRef.current.visionBox, { opacity: 0, x: -100 });
         }
-        if (contentRef.current.pillarsContainer) {
-            gsap.set(contentRef.current.pillarsContainer, { opacity: 0 });
+        if (contentRef.current.missionBox) {
+            gsap.set(contentRef.current.missionBox, { opacity: 0, x: 100 });
         }
-        if (contentRef.current.imagesContainer) {
-            gsap.set(contentRef.current.imagesContainer, { opacity: 0 });
+        // Step-by-step initial states
+        if (contentRef.current.step1) {
+            gsap.set(contentRef.current.step1, { opacity: 0, scale: 0.95, y: 20 });
+        }
+        if (contentRef.current.step2) {
+            gsap.set(contentRef.current.step2, { opacity: 0, scale: 0.95, x: 100 });
+        }
+        if (contentRef.current.imageA) {
+            gsap.set(contentRef.current.imageA, { opacity: 0, scale: 0.8 });
+        }
+        if (contentRef.current.step3) {
+            gsap.set(contentRef.current.step3, { opacity: 0, scale: 0.95, y: 20 });
+        }
+        if (contentRef.current.imageB) {
+            gsap.set(contentRef.current.imageB, { opacity: 0, scale: 0.8, x: -50 });
+        }
+        if (contentRef.current.step4) {
+            gsap.set(contentRef.current.step4, { opacity: 0, scale: 0.95, y: 20 });
+        }
+        if (contentRef.current.imageC) {
+            gsap.set(contentRef.current.imageC, { opacity: 0, scale: 0.8 });
+        }
+        if (contentRef.current.step5) {
+            gsap.set(contentRef.current.step5, { opacity: 0, scale: 0.95, y: 20 });
         }
 
-        // Animation sequence
+        // Animation sequence - 8 detailed steps based on scroll
         tl.to([mascotImageRef.current], {
             opacity: 1,
             scale: 1,
             x: 0,
-            duration: 2,
+            y: 0,
+            duration: 4,
             ease: "power3.out",
         })
-            // 2.1 - "What is Saturday School?" box appears from right
-            .to(contentRef.current.whatIsBox!, {
-                x: 0,
+            // Step 1: Text appears with typing animation
+            .to(contentRef.current.step1!, {
+                opacity: 1,
                 scale: 1,
-                opacity: 1,
-                duration: 2,
-                ease: "back.out",
-            }, 0.5)
-            // 2.2 - Subtext appears
-            .to(contentRef.current.subtextBox!, {
-                opacity: 1,
                 y: 0,
-                duration: 0.8,
-            }, 1)
-            // Pause
-            .to({}, { duration: 2 })
-            // 2.3 - Both boxes disappear to the left
-            .to(
-                [contentRef.current.whatIsBox!, contentRef.current.subtextBox!],
-                {
-                    x: -300,
-                    scale: 0,
-                    opacity: 0,
-                    duration: 2,
-                    ease: "back.in",
-                },
-                2.8
-            )
-            // 2.4 - "What We do?" box appears
-            .to(contentRef.current.whatWeDoBox!, {
-                x: 0,
-                scale: 1,
-                opacity: 1,
                 duration: 2,
+                ease: "power2.out",
+            }, 1)
+            // Type step 1 text - typing effect
+            .to(contentRef.current.step1!, {
+                text: "มูลนิธิโรงเรียนวันเสาร์เป็นองค์กรไม่แสวงหาผลกำไรที่เชื่อว่า",
+                duration: 3.5,
+                ease: "none",
+                delay: 0.5,
+            }, 1)
+            // Step 2: Second box appears beside first
+            .to(contentRef.current.step2!, {
+                opacity: 1,
+                scale: 1,
+                x: 0,
+                duration: 2,
+                ease: "power2.out",
+            }, 2.5)
+            // Hold step 1 & 2 visible
+            .to({}, { duration: 4 })
+            // Step 3: Image A appears
+            .to(contentRef.current.imageA!, {
+                opacity: 1,
+                scale: 1,
+                duration: 1.5,
                 ease: "back.out",
-            }, 2.8)
-            // 2.5 - Pillars appear one by one
-            .to(contentRef.current.pillarsContainer!, {
+            })
+            // Hold
+            .to({}, { duration: 3 })
+            // Step 4: New box with typing animation
+            .to(contentRef.current.step3!, {
                 opacity: 1,
-                duration: 0.5,
-            }, 3.8)
-            // 2.6-2.9 - Images appear and animate with text
-            .to(contentRef.current.imagesContainer!, {
+                scale: 1,
+                y: 0,
+                duration: 2,
+                ease: "power2.out",
+            })
+            // Type step 3 text
+            .to(contentRef.current.step3!, {
+                text: "เราร่วมสร้างพื้นที่การเรียนรู้นอกห้องเรียนที่เปิดกว้างสำหรับเด็กและเยาวชนไทย",
+                duration: 3.5,
+                ease: "none",
+                delay: 0.5,
+            }, "-=1.5")
+            // Hold
+            .to({}, { duration: 2 })
+            // Step 5: Image B appears
+            .to(contentRef.current.imageB!, {
                 opacity: 1,
-                duration: 0.5,
-            }, 4.3);
+                scale: 1,
+                x: 0,
+                duration: 1.5,
+                ease: "back.out",
+            })
+            // Hold
+            .to({}, { duration: 3 })
+            // Step 6: New box with typing animation
+            .to(contentRef.current.step4!, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 2,
+                ease: "power2.out",
+            })
+            // Type step 4 text
+            .to(contentRef.current.step4!, {
+                text: "โดยดึงพลังจากอาสาสมัครหลากหลายอาชีพให้เข้ามาแบ่งปันทักษะ ความรู้ แรงบันดาลใจในห้องเรียนวันเสาร์และโครงการต่าง ๆ ของมูลนิธิ",
+                duration: 4,
+                ease: "none",
+                delay: 0.5,
+            }, "-=1.5")
+            // Hold
+            .to({}, { duration: 2 })
+            // Step 7: Image C appears
+            .to(contentRef.current.imageC!, {
+                opacity: 1,
+                scale: 1,
+                duration: 1.5,
+                ease: "back.out",
+            })
+            // Hold
+            .to({}, { duration: 3 })
+            // Step 8: Final box appears
+            .to(contentRef.current.step5!, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 2,
+                ease: "power2.out",
+            })
+            // Hold final content
+            .to({}, { duration: 5 })
+            // === STAGE 2: Fade out first stage and show impact, vision, mission ===
+            // Fade out all step boxes and images
+            .to([
+                contentRef.current.step1,
+                contentRef.current.step2,
+                contentRef.current.step3,
+                contentRef.current.step4,
+                contentRef.current.step5,
+                contentRef.current.imageA,
+                contentRef.current.imageB,
+                contentRef.current.imageC
+            ], {
+                opacity: 0,
+                scale: 0.95,
+                duration: 2.5,
+                ease: "power2.in",
+                stagger: 0.2,
+            })
+            // Show Impact Statement
+            .to(contentRef.current.impactStatement!, {
+                opacity: 1,
+                scale: 1,
+                duration: 2,
+                ease: "power2.out",
+            }, "-=1")
+            // Hold
+            .to({}, { duration: 4 })
+            // Show Vision and Mission boxes
+            .to([contentRef.current.visionBox, contentRef.current.missionBox], {
+                opacity: 1,
+                x: 0,
+                duration: 2,
+                ease: "power2.out",
+                stagger: 0.5,
+            })
+            // Hold final stage
+            .to({}, { duration: 5 })
 
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
@@ -280,68 +446,138 @@ const WhatWeDo = () => {
             </div>
 
             {/* Center - Content */}
-            <div className="flex flex-col items-center p-20 pr-80 justify-start w-3/4 text-start z-10 relative h-full">
-                {/* 2.1 - What is Saturday School? Box */}
+            <div className="flex flex-col items-center p-20 pr-80 justify-start w-3/4 text-start z-10 relative h-full overflow-y-auto">
+                {/* Step 1: First text with typing animation */}
                 <div
                     ref={(el) => {
-                        if (el) contentRef.current.whatIsBox = el;
+                        if (el) contentRef.current.step1 = el;
                     }}
-                    className="absolute bg-black/50 backdrop-blur px-8 py-6 rounded-lg mb-4"
+                    className="absolute top-40 left-20 bg-black/50 backdrop-blur px-8 py-6 rounded-lg max-w-2xl"
                 >
-                    <h2 className="text-5xl font-bold text-white">Saturday School คืออะไร?</h2>
+                    <p className="text-lg text-white leading-relaxed h-16"></p>
                 </div>
 
-                {/* 2.2 - Subtext Box */}
+                {/* Step 2: Second box beside with flashy text */}
                 <div
                     ref={(el) => {
-                        if (el) contentRef.current.subtextBox = el;
+                        if (el) contentRef.current.step2 = el;
                     }}
-                    className="absolute bg-black/50 backdrop-blur right-1/4 top-24 mt-24 px-8 py-4 max-w-2xl"
+                    className="absolute top-40 right-32 bg-yellow-400/80 backdrop-blur px-8 py-6 rounded-lg max-w-xl shadow-lg"
+                    style={{ boxShadow: '0 0 30px rgba(251, 222, 79, 0.5)' }}
                 >
-                    <p className="text-3xl text-white">
-                        เราคือมูลนิธิเพื่อการศึกษาที่ไม่แสวงหากำไร เพื่อสร้างพื้นที่การเรียนรู้ที่เปิดโอกาสให้ทุกคนในสังคมมีส่วนร่วม เราเชื่อว่าทุกคนสามารถเป็นส่วนหนึ่งของการเปลี่ยนแปลงทางการศึกษา โดยการสนับสนุนให้เด็ก ๆ กล้าที่จะเดินตามความฝันและกลับมาสร้างเปลี่ยนแปลงให้กับชุมชนและสังคม
+                    <p className="text-lg font-bold text-blue-900 leading-relaxed">
+                        ทุกคนในสังคมสามารถเป็นส่วนหนึ่งในการพัฒนาการศึกษาไทยได้
                     </p>
                 </div>
 
-                {/* 2.4 - What We Do? Box */}
+                {/* Step 3: Image A */}
                 <div
                     ref={(el) => {
-                        if (el) contentRef.current.whatWeDoBox = el;
+                        if (el) contentRef.current.imageA = el;
                     }}
-                    className="absolute bg-black/50 backdrop-blur px-8 py-6 rounded-lg"
+                    className="absolute top-80 left-32 w-48 h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg shadow-lg flex items-center justify-center"
+                    style={{ boxShadow: '0 10px 40px rgba(251, 222, 79, 0.3)' }}
                 >
-                    <h2 className="text-4xl font-bold text-white">เราทำอะไรบ้าง?</h2>
+                    <div className="text-center text-white">
+                        <p className="text-sm font-semibold">รูปภาพ A</p>
+                        <p className="text-xs">Image A</p>
+                    </div>
                 </div>
 
-                {/* 2.5 - Pillars Container */}
+                {/* Step 4: New box with typing animation */}
                 <div
                     ref={(el) => {
-                        if (el) contentRef.current.pillarsContainer = el;
+                        if (el) contentRef.current.step3 = el;
                     }}
-                    className="absolute top-1/3 w-full flex justify-around px-8 gap-6"
+                    className="absolute top-96 left-20 bg-black/50 backdrop-blur px-8 py-6 rounded-lg max-w-2xl"
                 >
-                    {[1, 2, 3, 4].map((pillar) => (
-                        <div
-                            key={pillar}
-                            className="flex flex-col items-center animate-fade-in-up"
-                            style={{ animationDelay: `${pillar * 0.2}s` }}
-                        >
-                            <div className="w-20 h-20 bg-gradient-to-b from-blue-400 to-blue-600 rounded-lg flex items-center justify-center mb-2">
-                                <span className="text-white text-2xl font-bold">{pillar}</span>
-                            </div>
-                            <p className="text-white text-sm font-semibold">Pillar {pillar}</p>
-                        </div>
-                    ))}
+                    <p className="text-lg text-white leading-relaxed h-20"></p>
                 </div>
 
-                {/* 2.6-2.9 - Images with Text Container */}
+                {/* Step 5: Image B */}
                 <div
                     ref={(el) => {
-                        if (el) contentRef.current.imagesContainer = el;
+                        if (el) contentRef.current.imageB = el;
                     }}
-                    className="absolute top-2/3 w-full px-4 space-y-6"
+                    className="absolute top-96 right-32 w-40 h-40 bg-gradient-to-br from-green-400 to-teal-500 rounded-lg shadow-lg flex items-center justify-center"
+                    style={{ boxShadow: '0 10px 40px rgba(251, 222, 79, 0.3)' }}
                 >
-                    {/* Placeholder for images/content */}
+                    <div className="text-center text-white">
+                        <p className="text-sm font-semibold">รูปภาพ B</p>
+                        <p className="text-xs">Image B</p>
+                    </div>
+                </div>
+
+                {/* Step 6: New box with typing animation */}
+                <div
+                    ref={(el) => {
+                        if (el) contentRef.current.step4 = el;
+                    }}
+                    className="absolute top-[32rem] left-20 bg-black/50 backdrop-blur px-8 py-6 rounded-lg max-w-2xl"
+                >
+                    <p className="text-lg text-white leading-relaxed h-24"></p>
+                </div>
+
+                {/* Step 7: Image C */}
+                <div
+                    ref={(el) => {
+                        if (el) contentRef.current.imageC = el;
+                    }}
+                    className="absolute top-[32rem] right-32 w-40 h-40 bg-gradient-to-br from-pink-400 to-rose-500 rounded-lg shadow-lg flex items-center justify-center"
+                    style={{ boxShadow: '0 10px 40px rgba(251, 222, 79, 0.3)' }}
+                >
+                    <div className="text-center text-white">
+                        <p className="text-sm font-semibold">รูปภาพ C</p>
+                        <p className="text-xs">Image C</p>
+                    </div>
+                </div>
+
+                {/* Step 8: Final box */}
+                <div
+                    ref={(el) => {
+                        if (el) contentRef.current.step5 = el;
+                    }}
+                    className="absolute top-[48rem] left-20 bg-black/50 backdrop-blur px-8 py-6 rounded-lg max-w-3xl"
+                >
+                    <p className="text-lg text-white leading-relaxed">
+                        ผสานกับพลังสำคัญจากทุกภาคส่วนในสังคมร่วมส่งเสริมให้เด็กไทยกล้าทำตามคำฝัน และเติบโตไปเป็นคนที่มีพลังพร้อมกลับมาแบ่งปันให้คนรอบข้างและสังคม
+                    </p>
+                </div>
+
+                {/* Impact Statement and Vision/Mission for second stage */}
+                <div
+                    ref={(el) => {
+                        if (el) contentRef.current.impactStatement = el;
+                    }}
+                    className="absolute top-40 left-20 bg-black/50 backdrop-blur px-8 py-6 rounded-lg max-w-3xl"
+                >
+                    <p className="text-xl text-white leading-relaxed font-semibold">
+                        เราตั้งใจจะเปลี่ยนชีวิตคนให้เชื่อมั่นในศักยภาพของตนเอง กล้าทำตามความฝัน สามารถรับผิดชอบชีวิตตนเองได้ และพร้อมแบ่งปันให้กับคนรอบข้างและสังคม
+                    </p>
+                </div>
+
+                <div
+                    ref={(el) => {
+                        if (el) contentRef.current.visionBox = el;
+                    }}
+                    className="absolute top-1/2 left-20 bg-blue-900/60 backdrop-blur px-8 py-6 rounded-lg max-w-sm"
+                >
+                    <h3 className="text-2xl font-bold text-yellow-300 mb-3">วิสัยทัศน์</h3>
+                    <p className="text-white leading-relaxed">
+                        เด็กทุกคนกล้าเดินตามความฝัน และสร้างความเปลี่ยนแปลงให้กับชุมชนและสังคมของเขา
+                    </p>
+                </div>
+
+                <div
+                    ref={(el) => {
+                        if (el) contentRef.current.missionBox = el;
+                    }}
+                    className="absolute bottom-1/5 right-32 bg-blue-900/60 backdrop-blur px-8 py-6 rounded-lg max-w-sm"
+                >
+                    <h3 className="text-2xl font-bold text-yellow-300 mb-3">พันธกิจ</h3>
+                    <p className="text-white leading-relaxed">
+                        เสริมพลังให้คนทั่วไปเข้ามามีส่วนร่วมในการเปลี่ยนแปลงเชิงบวกกับการศึกษาไทย
+                    </p>
                 </div>
             </div>
             {/* Right - Mascots with Parallax */}

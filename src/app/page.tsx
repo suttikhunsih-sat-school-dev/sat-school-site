@@ -3,22 +3,19 @@
 import React, { useMemo } from "react";
 import Image from "next/image";
 import useMainPageSection from "../hooks/useMainPageSection";
-import DoodleBallCTAButton from "../components/DoodleBallCTAButton";
-import SatSchoolMainQuote from "../components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
-import InteractiveCloud from "../components/InteractiveCloud";
-import MainLogoQuoteFirstPage from "@/components/MainLogoQuoteFirstPage";
+import DoodleRectangleCTAButton from "../components/DoodleRectangleCTAButton";
 
-const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.5;
+const INITIAL_BACKGROUND_OPACITY_REDUCTION = 0.0;
 
 const HomePage = () => {
   const {
     sections,
     sectionsRef,
-    videoRef,
+    // videoRef,
     containerRef,
     logoRef,
+    mainButtonGroupContainerRef,
     scrollY,
-    quoteRef,
     scrollToSection,
   } = useMainPageSection()
 
@@ -29,13 +26,8 @@ const HomePage = () => {
 
   return (
     <div ref={containerRef} className="relative">
-      <div className="flex flex-col  fixed top-10 right-[0px] transform pr-[40px]  z-30 space-y-4 ">
-        <DoodleBallCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
-        <DoodleBallCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
-        <DoodleBallCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
-      </div>
       {/* Background video + overlay */}
-      <div className="fixed top-0 left-0 w-full h-screen z-[1]">
+      {/* <div className="fixed top-0 left-0 w-full h-screen z-[1]">
         <video
           ref={videoRef}
           autoPlay
@@ -53,6 +45,25 @@ const HomePage = () => {
             backgroundColor: `rgba(30, 85, 165, ${1 - opacity})`,
           }}
         />
+      </div> */}
+      <div className="fixed top-0 left-0 w-full h-screen z-[1]">
+        {/* <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          style={{ opacity }}
+        >
+          <source src="/sat-school-yt.mp4" type="video/mp4" />
+        </video> */}
+        <div
+          className="absolute top-0 left-0 w-full h-full transition-colors"
+          style={{
+            backgroundColor: `rgba(30, 85, 165, ${1 - opacity})`,
+          }}
+        />
       </div>
 
       {/* <InteractiveCloud /> */}
@@ -64,43 +75,19 @@ const HomePage = () => {
         <Image
           src="/Logo-Saturday-school-white.png"
           alt="Saturday School Logo"
-          width={600}
-          height={600}
+          width={480}
+          height={480}
           className="drop-shadow-xl h-auto"
           priority
         />
       </div>
-      <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
-        <SatSchoolMainQuote />
-      </div>
-      {/* Fixed logo — always visible for section 1 & 2 */}
-      <div className="fixed top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[4] flex justify-center items-center pointer-events-none">
-        {/* <div className="absolute">
-          <div className="relative">
-            <InteractiveCloud />
-            <div className="absolute inset-0 z-10 flex items-center justify-center">
-              <div
-                ref={logoRef}
-                className="flex justify-center items-center pointer-events-none w-[90%] md:w-[60%] lg:w-[50%]"
-                style={{ willChange: 'transform' }}
-              >
-                <Image
-                  src="/Logo-Saturday-school-white.png"
-                  alt="Saturday School Logo"
-                  width={600}
-                  height={600}
-                  className="drop-shadow-xl h-auto"
-                  priority
-                />
-              </div>
-              <div ref={quoteRef} className="fixed bottom-[20px] left-0 w-full h-[340px] z-[2] flex justify-center items-center pointer-events-none">
-                <SatSchoolMainQuote />
-              </div>
-            </div>
-          </div>
-        </div> */}
-      </div>
 
+
+      <div ref={mainButtonGroupContainerRef} className="fixed bottom-[60px] left-0 w-full flex justify-center items-center z-[4] gap-6">
+        <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
+        <DoodleRectangleCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
+        <DoodleRectangleCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />
+      </div>
 
 
       {/* Scrollable content sections */}
@@ -115,6 +102,7 @@ const HomePage = () => {
           {s.content}
         </section>
       ))}
+
     </div>
   );
 };

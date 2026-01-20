@@ -3,6 +3,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import WhatWeDo from "../components/MainPageSubSection/WhatWedo";
 import ProjectsPillarForVolunteerSection from "../components/MainPageSubSection/ProjectsPillarForVolunteerSection";
+import LandingPageFirstPage from "@/components/MainPageSubSection/LandingPageFirstPage";
 
 const useMainPageSection = () => {
     const scrollToSection = (id: string) => {
@@ -12,12 +13,15 @@ const useMainPageSection = () => {
     const [scrollY, setScrollY] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLDivElement>(null);
+    const mainButtonGroupContainerRef = useRef<HTMLDivElement>(null);
     const quoteRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const sectionsRef = useRef<HTMLElement[]>([]);
     const sections = [
         {
-            id: "section1", content: <></>
+            id: "section1", content: (
+                <LandingPageFirstPage />
+            )
         },
         {
             id: "section2",
@@ -73,14 +77,59 @@ const useMainPageSection = () => {
             },
         });
 
-        gsap.to(quoteRef.current, {
-            opacity: 0,
+        // button group move to top of the page
+        gsap.to(mainButtonGroupContainerRef.current, {
+            scale: 0.5,
+            yPercent: -50,
+            top: "10%",
+            // left: "10%",
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                start: "top bottom",
+                end: "top 20%",
+                scrub: 1,
+                markers: false, // Set to true for debugging
+            },
+        });
+
+        gsap.to('[data-quote-element]', {
+            // opacity: 0,
+            y: -1000,
             scrollTrigger: {
                 trigger: sectionsRef.current[1],
                 start: "top 80%",
                 end: "top 20%",
                 scrub: 1,
                 markers: false, // Set to true for debugging
+            },
+        });
+
+        // Animate out mascot when entering section 2
+        gsap.to('[data-mascot-element]', {
+            // opacity: 0,
+            x: 5000,
+            y: 1000,
+            width: 1000,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                // start: "top 80%",
+                end: "right 20%",
+                scrub: 1,
+            },
+        });
+
+        // Animate out cloud when entering section 2
+        gsap.to('[data-cloud-element]', {
+            // opacity: 0,
+            y: -1000,
+            width: 0,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                start: "top 80%",
+                end: "top 0%",
+                scrub: 1,
             },
         });
 
@@ -103,7 +152,7 @@ const useMainPageSection = () => {
 
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
-    return { scrollToSection, sections, sectionsRef, videoRef, containerRef, logoRef, quoteRef, scrollY };
+    return { scrollToSection, sections, sectionsRef, videoRef, containerRef, mainButtonGroupContainerRef, logoRef, quoteRef, scrollY };
 };
 
 export default useMainPageSection;

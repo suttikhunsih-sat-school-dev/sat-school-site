@@ -19,8 +19,8 @@ const HomePage = () => {
     // videoRef,
     containerRef,
     logoRef,
+    mainButtonGroupContainerRef,
     scrollY,
-    quoteRef,
     scrollToSection,
   } = useMainPageSection()
 
@@ -88,7 +88,7 @@ const HomePage = () => {
       </div>
 
 
-      <div className="fixed bottom-[60px] left-0 w-full flex justify-center items-center z-[3] gap-6">
+      <div ref={mainButtonGroupContainerRef} className="fixed bottom-[60px] left-0 w-full flex justify-center items-center z-[4] gap-6">
         <DoodleRectangleCTAButton title="สมัครอาสา" onClickCallback={() => scrollToSection("section4")} />
         <DoodleRectangleCTAButton title="บริจาค" onClickCallback={() => scrollToSection("section4")} />
         <DoodleRectangleCTAButton title="CSR" onClickCallback={() => scrollToSection("section4")} />

@@ -13,6 +13,7 @@ const useMainPageSection = () => {
     const [scrollY, setScrollY] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLDivElement>(null);
+    const mainButtonGroupContainerRef = useRef<HTMLDivElement>(null);
     const quoteRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const sectionsRef = useRef<HTMLElement[]>([]);
@@ -76,9 +77,24 @@ const useMainPageSection = () => {
             },
         });
 
-        gsap.to(quoteRef.current, {
-            opacity: 0,
-            y: 50,
+        // button group move to top of the page
+        gsap.to(mainButtonGroupContainerRef.current, {
+            scale: 0.5,
+            yPercent: -50,
+            top: "10%",
+            // left: "10%",
+            scrollTrigger: {
+                trigger: sectionsRef.current[1],
+                start: "top bottom",
+                end: "top 20%",
+                scrub: 1,
+                markers: false, // Set to true for debugging
+            },
+        });
+
+        gsap.to('[data-quote-element]', {
+            // opacity: 0,
+            y: -1000,
             scrollTrigger: {
                 trigger: sectionsRef.current[1],
                 start: "top 80%",
@@ -90,26 +106,29 @@ const useMainPageSection = () => {
 
         // Animate out mascot when entering section 2
         gsap.to('[data-mascot-element]', {
-            opacity: 0,
-            x: -300,
+            // opacity: 0,
+            x: 5000,
+            y: 1000,
+            width: 1000,
             duration: 0.8,
             scrollTrigger: {
                 trigger: sectionsRef.current[1],
-                start: "top 80%",
-                end: "top 20%",
+                // start: "top 80%",
+                end: "right 20%",
                 scrub: 1,
             },
         });
 
         // Animate out cloud when entering section 2
         gsap.to('[data-cloud-element]', {
-            opacity: 0,
-            y: 100,
+            // opacity: 0,
+            y: -1000,
+            width: 0,
             duration: 0.8,
             scrollTrigger: {
                 trigger: sectionsRef.current[1],
                 start: "top 80%",
-                end: "top 20%",
+                end: "top 0%",
                 scrub: 1,
             },
         });
@@ -133,7 +152,7 @@ const useMainPageSection = () => {
 
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
-    return { scrollToSection, sections, sectionsRef, videoRef, containerRef, logoRef, quoteRef, scrollY };
+    return { scrollToSection, sections, sectionsRef, videoRef, containerRef, mainButtonGroupContainerRef, logoRef, quoteRef, scrollY };
 };
 
 export default useMainPageSection;

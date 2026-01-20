@@ -8,7 +8,7 @@ const LandingPageFirstPage = () => {
             <SaturnWithRedFlagMascotWrapper />
         </div>
 
-        <div className="fixed bottom-[0px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
+        <div data-quote-element className="fixed bottom-[0px] left-0 w-full h-[340px] z-[4] flex justify-center items-center pointer-events-none">
             <SatSchoolMainQuote />
         </div>
         <div data-cloud-element className="fixed bottom-[-200px] left-0 w-full flex justify-center items-center z-[3]">

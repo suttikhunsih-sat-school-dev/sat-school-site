@@ -4,6 +4,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import WhatWeDo from "../components/MainPageSubSection/WhatWedo";
 import ProjectsPillarForVolunteerSection from "../components/MainPageSubSection/ProjectsPillarForVolunteerSection";
 import LandingPageFirstPage from "@/components/MainPageSubSection/LandingPageFirstPage";
+import LandingPageFirstPageTransition from "@/components/MainPageSubSection/LandingPageFirstPageTransition";
 
 const useMainPageSection = () => {
     const scrollToSection = (id: string) => {
@@ -24,13 +25,18 @@ const useMainPageSection = () => {
             )
         },
         {
-            id: "section2",
+            id: "section2", content: (
+                <LandingPageFirstPageTransition sectionsRef={sectionsRef} />
+            )
+        },
+        {
+            id: "section3",
             content: (
                 <WhatWeDo />
             ),
         },
         {
-            id: "section3",
+            id: "section4",
             content: (
                 <ProjectsPillarForVolunteerSection />
             ),
@@ -103,6 +109,25 @@ const useMainPageSection = () => {
                 markers: false, // Set to true for debugging
             },
         });
+
+        // Animate mascot falling from above with growing scale when entering section 2
+        gsap.fromTo('[data-falling-mascot]', 
+            {
+                y: -2000,
+                scale: 0.01,
+            },
+            {
+                y: 0,
+                scale: 1,
+                scrollTrigger: {
+                    trigger: sectionsRef.current[1],
+                    start: "top 90%",
+                    end: "top 10%",
+                    scrub: 1,
+                    markers: false,
+                },
+            }
+        );
 
         // Animate out mascot when entering section 2
         gsap.to('[data-mascot-element]', {

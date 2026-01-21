@@ -3,26 +3,52 @@ import SatSchoolMainQuote from "@/components/DoodleQuote/SatSchoolMainQuote/SatS
 import InteractiveCloud from "@/components/InteractiveCloud";
 import SaturnInSpaceMascotWrapper from "@/components/Mascot/SaturnInSpaceMascotWrapper";
 import SaturnWithRedFlagMascotWrapper from "@/components/Mascot/SaturnWithRedFlagMascotWrapper";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-const LandingPageFirstPage = () => {
+const LandingPageFirstPageTransition = () => {
     const mascotImageRef = useRef<HTMLDivElement>(null);
     const mascotInnerRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        // Initial states
-        gsap.from([mascotImageRef.current], {
-            // opacity: 0,
-            y: 0,
-        });
-        gsap.to([mascotImageRef.current], {
-            // opacity: 0,
-        });
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [hasAnimated, setHasAnimated] = useState(false);
 
-        // gsap.set(mascotImageRef.current, { x: 3000, y: -5000 });
-    },[])
-    return <div className="z-[3]">
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !hasAnimated) {
+                    setHasAnimated(true);
+                    
+                    // Set initial state - mascot starts high above and small
+                    gsap.set(mascotImageRef.current, {
+                        y: -1000,
+                        scale: 0.3,
+                        opacity: 1,
+                    });
+
+                    // Animate mascot falling from above with growing scale
+                    gsap.to(mascotImageRef.current, {
+                        y: 0,
+                        scale: 1,
+                        duration: 2.5,
+                        ease: "power2.inOut",
+                    });
+                }
+            },
+            { threshold: 0.3 }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => {
+            if (containerRef.current) {
+                observer.unobserve(containerRef.current);
+            }
+        };
+    }, [hasAnimated]);
+    return <div className="z-[3]" ref={containerRef}>
         <SaturnInSpaceMascotWrapper mascotImageRef={mascotImageRef} mascotInnerRef={mascotInnerRef}  width={500}  />
     </div>
 }
 
-export default LandingPageFirstPage;
+export default LandingPageFirstPageTransition;

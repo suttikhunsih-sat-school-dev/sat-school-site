@@ -46,15 +46,17 @@ const DoodleRectangleCTAButton = ({
             className="
                 relative
                 z-10
-                bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-                text-white font-bold py-4 px-8 rounded-lg shadow-lg
+                bg-[#fddb4f]
+                text-black font-bold py-4 px-8 rounded-lg shadow-lg
                 hover:shadow-2xl hover:scale-110 hover:shadow-yellow-300 transition-all duration-300 ease-in-out
-                border-4 border-white
+                border-4 border-black
                 text-4xl
                 min-w-[180px]
                 whitespace-nowrap
                 cursor-pointer
                 hover:brightness-110
+                hover:min-w-[240px]
+                hover:min-h-[90px]
                 "
             style={{
                 boxShadow: 'inset 0 0 20px rgba(255, 255, 255, 0)'

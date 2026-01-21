@@ -4,6 +4,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import WhatWeDo from "../components/MainPageSubSection/WhatWedo";
 import ProjectsPillarForVolunteerSection from "../components/MainPageSubSection/ProjectsPillarForVolunteerSection";
 import LandingPageFirstPage from "@/components/MainPageSubSection/LandingPageFirstPage";
+import LandingPageFirstPageTransition from "@/components/MainPageSubSection/LandingPageFirstPageTransition";
 
 const useMainPageSection = () => {
     const scrollToSection = (id: string) => {
@@ -24,13 +25,18 @@ const useMainPageSection = () => {
             )
         },
         {
-            id: "section2",
+            id: "section2", content: (
+                <LandingPageFirstPageTransition />
+            )
+        },
+        {
+            id: "section3",
             content: (
                 <WhatWeDo />
             ),
         },
         {
-            id: "section3",
+            id: "section4",
             content: (
                 <ProjectsPillarForVolunteerSection />
             ),

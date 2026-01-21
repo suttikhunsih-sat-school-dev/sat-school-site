@@ -1,8 +1,5 @@
-import BoyRocket from "@/components/BoyRocket";
-import SatSchoolMainQuote from "@/components/DoodleQuote/SatSchoolMainQuote/SatSchoolMainQuote";
-import InteractiveCloud from "@/components/InteractiveCloud";
+
 import SaturnInSpaceMascotWrapper from "@/components/Mascot/SaturnInSpaceMascotWrapper";
-import SaturnWithRedFlagMascotWrapper from "@/components/Mascot/SaturnWithRedFlagMascotWrapper";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 const LandingPageFirstPageTransition = () => {
